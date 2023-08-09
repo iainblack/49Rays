@@ -1,25 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useRef } from "react";
+import { Animated } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import BackgroundCarousel from "./Components/BackgroundCarousel";
 
-import Card from "./Components/Card";
+import CardCarousel from "./Components/CardCarousel";
 
 export default function App() {
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <Card />
-      </View>
+      <BackgroundCarousel scrollX={scrollX} />
+      <CardCarousel scrollX={scrollX} />
     </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 30,
-  },
-});

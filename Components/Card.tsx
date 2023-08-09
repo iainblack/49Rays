@@ -1,16 +1,25 @@
-import { View, Text, StyleSheet, Button, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, ImageSourcePropType } from "react-native";
 import React from "react";
 import Animated, {
-  Extrapolate,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { Image } from "expo-image";
+import { Dimensions } from "react-native";
 
-const Card = () => {
+export interface CardProps {
+  frontImage: ImageSourcePropType;
+  backImage: ImageSourcePropType;
+  blurHashFront?: string;
+  blurHashBack?: string;
+  id: number;
+}
+
+const Card = (props: CardProps) => {
   const spin = useSharedValue<number>(0);
+  const { width, height } = Dimensions.get("window");
 
   const rStyle = useAnimatedStyle(() => {
     const spinVal = interpolate(spin.value, [0, 1], [0, 180]);
@@ -36,19 +45,37 @@ const Card = () => {
 
   return (
     <View>
-      <View>
-        <Animated.View style={[Styles.front, rStyle]}>
-          <Text>Front View</Text>
-        </Animated.View>
-        <Animated.View style={[Styles.back, bStyle]}>
-          <Text>Back</Text>
-        </Animated.View>
-      </View>
-      <Pressable
-        onPress={() => (spin.value = spin.value ? 0 : 1)}
-        style={{ marginTop: 30, alignItems: "center" }}
-      >
-        <Text style={{ fontSize: 16 }}>Flip</Text>
+      <Pressable onPress={() => (spin.value = spin.value ? 0 : 1)}>
+        <View>
+          <Animated.View
+            style={[
+              Styles.front,
+              rStyle,
+              { height: height * 0.6, width: width * 0.85 },
+            ]}
+          >
+            <Image
+              style={Styles.image}
+              source={props.frontImage}
+              placeholder={props.blurHashFront}
+              transition={1000}
+            />
+          </Animated.View>
+          <Animated.View
+            style={[
+              Styles.back,
+              bStyle,
+              { height: height * 0.6, width: width * 0.85 },
+            ]}
+          >
+            <Image
+              style={Styles.image}
+              source={props.backImage}
+              placeholder={props.blurHashBack}
+              transition={1000}
+            />
+          </Animated.View>
+        </View>
       </Pressable>
     </View>
   );
@@ -58,9 +85,6 @@ export default Card;
 
 const Styles = StyleSheet.create({
   front: {
-    height: 400,
-    width: 250,
-    backgroundColor: "#D8D9CF",
     borderRadius: 16,
     position: "absolute",
     alignItems: "center",
@@ -68,12 +92,14 @@ const Styles = StyleSheet.create({
     backfaceVisibility: "hidden",
   },
   back: {
-    height: 400,
-    width: 250,
-    backgroundColor: "#FF8787",
     borderRadius: 16,
     backfaceVisibility: "hidden",
     alignItems: "center",
     justifyContent: "center",
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+    borderRadius: 16,
   },
 });
