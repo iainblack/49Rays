@@ -16,6 +16,7 @@ export default function CardCarousel({ scrollX }: CardCarouselProps) {
         { useNativeDriver: true }
       )}
       data={data}
+      showsHorizontalScrollIndicator={false}
       pagingEnabled
       initialNumToRender={3}
       keyExtractor={(item) => String(item.id)}
