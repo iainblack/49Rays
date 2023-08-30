@@ -36,7 +36,7 @@ export default function AuthorInfoScreen({
               width: 0,
               height: 0,
             },
-            shadowRadius: 8,
+            shadowRadius: 2,
           }}
           onPress={() =>
             setHomeState({ showCards: false, showAuthorInfo: false })

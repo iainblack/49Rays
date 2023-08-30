@@ -33,7 +33,7 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
               width: 0,
               height: 0,
             },
-            shadowRadius: 8,
+            shadowRadius: 2,
           }}
           onPress={() =>
             setHomeState({ showCards: false, showAuthorInfo: false })
