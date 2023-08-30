@@ -58,7 +58,7 @@ const Card = (props: CardProps) => {
               style={Styles.image}
               source={props.frontImage}
               placeholder={props.blurHashFront}
-              transition={500}
+              transition={1000}
             />
           </Animated.View>
           <Animated.View
@@ -72,7 +72,6 @@ const Card = (props: CardProps) => {
               style={Styles.image}
               source={props.backImage}
               placeholder={props.blurHashBack}
-              transition={1000}
             />
           </Animated.View>
         </View>
