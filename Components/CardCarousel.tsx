@@ -51,12 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
     width: Dimensions.get("window").width,
-    shadowColor: "#000",
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 15,
   },
 });

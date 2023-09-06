@@ -109,13 +109,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontFamily: "Cochin",
     fontSize: 20,
-    shadowColor: "#000",
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 5,
     textAlign: "center",
     letterSpacing: 1,
   },
@@ -126,5 +119,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 16,
     paddingHorizontal: 10,
+    shadowColor: "#000",
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 15,
   },
 });

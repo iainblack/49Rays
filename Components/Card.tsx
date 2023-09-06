@@ -44,7 +44,17 @@ const Card = (props: CardProps) => {
   }, []);
 
   return (
-    <View>
+    <View
+      style={{
+        shadowColor: "#000",
+        shadowOpacity: 1,
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowRadius: 15,
+      }}
+    >
       <Pressable onPress={() => (spin.value = spin.value ? 0 : 1)}>
         <View>
           <Animated.View
