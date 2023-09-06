@@ -28,7 +28,7 @@ export default function CardCarousel({ scrollX }: CardCarouselProps) {
         initialNumToRender={5}
         keyExtractor={(item) => String(item.id)}
         snapToAlignment={"center"}
-        decelerationRate={"normal"}
+        decelerationRate={"fast"}
         snapToInterval={Dimensions.get("window").width}
         renderItem={({ item }) => (
           <View key={item.id} style={styles.container}>

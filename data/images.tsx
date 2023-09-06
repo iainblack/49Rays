@@ -2,10 +2,23 @@ import { CardProps } from "../components/Card";
 
 export const data: CardProps[] = [
   {
+    frontImage: require("../assets/rayIntro.jpg"),
+    backImage: require("../assets/bg.jpg"),
+    id: -3,
+  },
+  {
+    frontImage: require("../assets/index-1.jpg"),
+    backImage: require("../assets/index-2.jpg"),
+    id: -2,
+  },
+  {
+    frontImage: require("../assets/index-3.jpg"),
+    backImage: require("../assets/index-4.jpg"),
+    id: -1,
+  },
+  {
     frontImage: require("../assets/front/titleFront.jpg"),
-    blurHashFront: "JHEWB?I9^-xuL+tA",
     backImage: require("../assets/back/titleBack.jpg"),
-    blurHashBack: "JHDv.#I9^-xbM2tT",
     id: 0,
   },
   {
@@ -15,9 +28,7 @@ export const data: CardProps[] = [
   },
   {
     frontImage: require("../assets/front/ray1Image.jpg"),
-    blurHashFront: "JO8OQGomkGW9DgbW",
     backImage: require("../assets/back/ray1Text.jpg"),
-    blurHashBack: "J49@Zy~q9T%LD*D+",
     id: 1,
   },
   {

@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
   },
   titleText: {
-    color: "purple",
+    color: "white",
     fontWeight: "bold",
     fontSize: 48,
     fontFamily: "Cochin",

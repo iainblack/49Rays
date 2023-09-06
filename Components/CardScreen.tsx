@@ -63,7 +63,7 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
         </Text>
         <Text style={{ color: "white", fontFamily: "Cochin", fontSize: 18 }}>
           {" "}
-          Tap on card to flip
+          Tap on a card to flip
         </Text>
       </View>
     </SafeAreaView>

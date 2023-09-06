@@ -19,7 +19,7 @@ export default function Home() {
   });
 
   const scrollX = useRef(new Animated.Value(0)).current;
-  const blurHash = "LzIYw$WVWBof.AWCWYj[I9WVRkay";
+  const blurHash = "LhJt0pD%-m%1},V_xFs:rEs;Vbe:";
 
   return (
     <GestureHandlerRootView

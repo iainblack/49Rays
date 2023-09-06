@@ -52,7 +52,7 @@ export default function AuthorInfoScreen({
             <Text style={styles.paragraph}>{AuthorInfo}</Text>
             <Link
               style={{
-                color: "lightblue",
+                color: "white",
                 fontFamily: "Cochin",
                 fontSize: 18,
                 textAlign: "center",
@@ -106,11 +106,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   paragraph: {
-    color: "white",
+    color: "black",
     fontFamily: "Cochin",
     fontSize: 20,
     shadowColor: "#000",
-    shadowOpacity: 5,
+    shadowOpacity: 1,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   paragraphBg: {
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "#CF9FFF",
     height: Dimensions.get("screen").height * 0.6,
     width: Dimensions.get("screen").width * 0.9,
     justifyContent: "center",
