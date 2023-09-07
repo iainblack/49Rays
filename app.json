@@ -10,9 +10,7 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.49Rays"
@@ -32,9 +30,7 @@
       }
     },
     "owner": "iainblack",
-    "plugins": [
-      "expo-router"
-    ],
-    "scheme": "49Rays"
+    "plugins": ["expo-router"],
+    "scheme": "the49rays"
   }
 }
