@@ -1,5 +1,5 @@
 import { View, StyleSheet, Pressable, ImageSourcePropType } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Animated, {
   interpolate,
   useAnimatedStyle,
@@ -7,7 +7,9 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { Image } from "expo-image";
-import { Dimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
+import { DeviceType, getDeviceTypeAsync } from "expo-device";
+import { deviceTypeMap } from "../utils/utils";
 
 export interface CardProps {
   frontImage: ImageSourcePropType;
@@ -18,8 +20,12 @@ export interface CardProps {
 }
 
 const Card = (props: CardProps) => {
+  const { height, width } = useWindowDimensions();
+  const [cardDimensions, setCardDimensions] = useState({
+    height: height * 0.7,
+    width: width * 0.95,
+  });
   const spin = useSharedValue<number>(0);
-  const { width, height } = Dimensions.get("window");
 
   const rStyle = useAnimatedStyle(() => {
     const spinVal = interpolate(spin.value, [0, 1], [0, 180]);
@@ -43,6 +49,23 @@ const Card = (props: CardProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    getDeviceTypeAsync().then((deviceType) => {
+      const thisDeviceType = deviceTypeMap[deviceType];
+      if (thisDeviceType === "phone") {
+        setCardDimensions({
+          height: height * 0.7,
+          width: width * 0.95,
+        });
+      } else if (thisDeviceType === "tablet") {
+        setCardDimensions({
+          height: height * 0.8,
+          width: width * 0.8,
+        });
+      }
+    });
+  }, []);
+
   return (
     <View
       style={{
@@ -61,7 +84,7 @@ const Card = (props: CardProps) => {
             style={[
               Styles.front,
               rStyle,
-              { height: height * 0.7, width: width * 0.95 },
+              { height: cardDimensions.height, width: cardDimensions.width },
             ]}
           >
             <Image
@@ -75,7 +98,7 @@ const Card = (props: CardProps) => {
             style={[
               Styles.back,
               bStyle,
-              { height: height * 0.7, width: width * 0.95 },
+              { height: cardDimensions.height, width: cardDimensions.width },
             ]}
           >
             <Image
@@ -110,5 +133,6 @@ const Styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     borderRadius: 16,
+    resizeMode: "stretch",
   },
 });

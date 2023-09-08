@@ -1,4 +1,5 @@
-import React from "react";
+import { getDeviceTypeAsync } from "expo-device";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
@@ -8,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { HomeState } from "../app";
-import { fontFamily } from "../utils/utils";
+import { deviceTypeMap, fontFamily, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
 
 interface CardScreenProps {
@@ -17,6 +18,15 @@ interface CardScreenProps {
 }
 
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
+  const [deviceType, setDeviceType] = React.useState<string>("phone");
+
+  useEffect(() => {
+    getDeviceTypeAsync().then((deviceType) => {
+      const thisDeviceType = deviceTypeMap[deviceType];
+      setDeviceType(thisDeviceType);
+    });
+  }, []);
+
   return (
     <SafeAreaView>
       <CardCarousel scrollX={scrollX} />
@@ -37,11 +47,13 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
             },
             shadowRadius: 2,
           }}
-          onPress={() =>
-            setHomeState({ showCards: false, showAuthorInfo: false })
-          }
+          onPress={() => setHomeState({ showCards: false })}
         >
-          <Text style={styles.buttonText}>Back</Text>
+          <Text
+            style={[styles.buttonText, { fontSize: normalize(18, deviceType) }]}
+          >
+            Back
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -62,7 +74,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 26,
     fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 1,

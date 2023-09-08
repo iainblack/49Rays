@@ -276,4 +276,9 @@ export const data: CardProps[] = [
     backImage: require("../assets/back/ray49Text.jpg"),
     id: 49,
   },
+  {
+    frontImage: require("../assets/authorInfo.jpg"),
+    backImage: require("../assets/bg.jpg"),
+    id: 50,
+  },
 ];
