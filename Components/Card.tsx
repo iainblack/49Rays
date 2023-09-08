@@ -61,7 +61,7 @@ const Card = (props: CardProps) => {
             style={[
               Styles.front,
               rStyle,
-              { height: height * 0.6, width: width * 0.85 },
+              { height: height * 0.7, width: width * 0.95 },
             ]}
           >
             <Image
@@ -75,7 +75,7 @@ const Card = (props: CardProps) => {
             style={[
               Styles.back,
               bStyle,
-              { height: height * 0.6, width: width * 0.85 },
+              { height: height * 0.7, width: width * 0.95 },
             ]}
           >
             <Image

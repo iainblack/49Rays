@@ -6,7 +6,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { data } from "../data/images";
+import { data } from "../utils/images";
 import Card from "./Card";
 
 interface CardCarouselProps {
@@ -15,7 +15,7 @@ interface CardCarouselProps {
 
 export default function CardCarousel({ scrollX }: CardCarouselProps) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <Animated.FlatList
         horizontal
         onScroll={Animated.event(
@@ -40,7 +40,7 @@ export default function CardCarousel({ scrollX }: CardCarouselProps) {
           </View>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

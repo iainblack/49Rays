@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { HomeState } from "../app";
+import { fontFamily } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
 
 interface CardScreenProps {
@@ -18,9 +19,10 @@ interface CardScreenProps {
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
   return (
     <SafeAreaView>
+      <CardCarousel scrollX={scrollX} />
       <View
         style={{
-          paddingTop: Dimensions.get("window").height * 0.1,
+          paddingBottom: 20,
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -42,30 +44,6 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
           <Text style={styles.buttonText}>Back</Text>
         </Pressable>
       </View>
-      <CardCarousel scrollX={scrollX} />
-      <View
-        style={{
-          paddingBottom: 20,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            color: "white",
-            fontFamily: "Cochin",
-            fontSize: 18,
-            marginBottom: 10,
-          }}
-        >
-          {" "}
-          Swipe to scroll trough deck
-        </Text>
-        <Text style={{ color: "white", fontFamily: "Cochin", fontSize: 18 }}>
-          {" "}
-          Tap on a card to flip
-        </Text>
-      </View>
     </SafeAreaView>
   );
 }
@@ -85,7 +63,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 26,
-    fontFamily: "Cochin",
+    fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 1,
     shadowOffset: {

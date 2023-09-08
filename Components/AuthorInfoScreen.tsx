@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { HomeState } from "../app";
-import { AuthorInfo } from "../data/images";
+import { AuthorInfo } from "../utils/utils";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 interface AuthorInfoScreenProps {
@@ -23,27 +23,13 @@ export default function AuthorInfoScreen({
     <SafeAreaView>
       <View
         style={{
-          paddingTop: Dimensions.get("window").height * 0.1,
-          justifyContent: "center",
+          flex: 1,
           alignItems: "center",
+          justifyContent: "center",
+          padding: 20,
+          width: Dimensions.get("window").width,
         }}
       >
-        <Pressable
-          style={{
-            shadowColor: "#000",
-            shadowOpacity: 1,
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowRadius: 2,
-          }}
-          onPress={() =>
-            setHomeState({ showCards: false, showAuthorInfo: false })
-          }
-        >
-          <Text style={styles.buttonText}>Back</Text>
-        </Pressable>
         <Animated.View
           style={[styles.infoContainer]}
           entering={FadeIn.duration(1000).delay(100)}
@@ -72,6 +58,22 @@ export default function AuthorInfoScreen({
             </Link>
           </View>
         </Animated.View>
+        <Pressable
+          style={{
+            shadowColor: "#000",
+            shadowOpacity: 1,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 2,
+          }}
+          onPress={() =>
+            setHomeState({ showCards: false, showAuthorInfo: false })
+          }
+        >
+          <Text style={styles.buttonText}>Back</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -114,8 +116,8 @@ const styles = StyleSheet.create({
   },
   paragraphBg: {
     backgroundColor: "#CF9FFF",
-    height: Dimensions.get("screen").height * 0.6,
-    width: Dimensions.get("screen").width * 0.9,
+    height: Dimensions.get("screen").height * 0.7,
+    width: Dimensions.get("screen").width * 0.95,
     justifyContent: "center",
     borderRadius: 16,
     paddingHorizontal: 10,

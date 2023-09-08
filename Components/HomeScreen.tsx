@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { HomeState } from "../app";
+import { fontFamily } from "../utils/utils";
 
 interface HomeScreenProps {
   setHomeState: React.Dispatch<React.SetStateAction<HomeState>>;
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 26,
-    fontFamily: "Cochin",
+    fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 1,
     shadowOffset: {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 48,
-    fontFamily: "Cochin",
+    fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 5,
     shadowOffset: {
