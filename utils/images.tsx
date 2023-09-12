@@ -1,70 +1,65 @@
 import { CardProps } from "../components/Card";
 
 export const data: CardProps[] = [
-  {
-    frontImage: require("../assets/rayIntro.jpg"),
-    backImage: require("../assets/bg.jpg"),
-    id: -3,
-  },
-  {
-    frontImage: require("../assets/index-1.jpg"),
-    backImage: require("../assets/index-2.jpg"),
-    id: -2,
-  },
-  {
-    frontImage: require("../assets/index-3.jpg"),
-    backImage: require("../assets/index-4.jpg"),
-    id: -1,
-  },
+  // {
+  //   frontImage: require("../assets/rayIntro.jpg"),
+  //   backImage: require("../assets/bg.jpg"),
+  //   id: -3,
+  // },
+  // {
+  //   frontImage: require("../assets/index-1.jpg"),
+  //   backImage: require("../assets/index-2.jpg"),
+  //   id: -2,
+  // },
+  // {
+  //   frontImage: require("../assets/index-3.jpg"),
+  //   backImage: require("../assets/index-4.jpg"),
+  //   id: -1,
+  // },
   {
     frontImage: require("../assets/front/titleFront.jpg"),
     backImage: require("../assets/back/titleBack.jpg"),
     id: 0,
   },
-  {
-    frontImage: require("../assets/front/OnePeople.jpg"),
-    backImage: require("../assets/back/prayerText.jpg"),
-    id: 0.5,
-  },
-  {
-    frontImage: require("../assets/front/ray1Image.jpg"),
-    backImage: require("../assets/back/ray1Text.jpg"),
-    id: 1,
-  },
+  // {
+  //   frontImage: require("../assets/front/ray1Image.jpg"),
+  //   backImage: require("../assets/back/ray1Text.jpg"),
+  //   id: ,
+  // },
   {
     frontImage: require("../assets/front/ray2Image.jpg"),
     backImage: require("../assets/back/ray2Text.jpg"),
-    id: 2,
+    id: 1,
   },
   {
     frontImage: require("../assets/front/ray3Image.jpg"),
     backImage: require("../assets/back/ray3Text.jpg"),
-    id: 3,
+    id: 2,
   },
   {
     frontImage: require("../assets/front/ray4Image.jpg"),
     backImage: require("../assets/back/ray4Text.jpg"),
-    id: 4,
+    id: 3,
   },
   {
     frontImage: require("../assets/front/ray5Image.jpg"),
     backImage: require("../assets/back/ray5Text.jpg"),
-    id: 5,
+    id: 4,
   },
   {
     frontImage: require("../assets/front/ray6Image.jpg"),
     backImage: require("../assets/back/ray6Text.jpg"),
-    id: 6,
+    id: 5,
   },
   {
     frontImage: require("../assets/front/ray7Image.jpg"),
     backImage: require("../assets/back/ray7Text.jpg"),
-    id: 7,
+    id: 6,
   },
   {
     frontImage: require("../assets/front/ray7PlusImage.jpg"),
     backImage: require("../assets/back/ray7PlusText.jpg"),
-    id: 7.5,
+    id: 7,
   },
   {
     frontImage: require("../assets/front/ray8Image.jpg"),
@@ -280,5 +275,10 @@ export const data: CardProps[] = [
     frontImage: require("../assets/authorInfo.jpg"),
     backImage: require("../assets/bg.jpg"),
     id: 50,
+  },
+  {
+    frontImage: require("../assets/front/OnePeople.jpg"),
+    backImage: require("../assets/back/prayerText.jpg"),
+    id: 51,
   },
 ];

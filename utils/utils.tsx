@@ -24,3 +24,23 @@ export function normalize(size, deviceType) {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
   }
 }
+
+export const PHONE_VIEW_SCREEN_HEIGHT_EXPANDED =
+  Dimensions.get("window").height * 0.7;
+export const PHONE_VIEW_SCREEN_WIDTH_EXPANDED =
+  Dimensions.get("window").width * 0.95;
+
+export const PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED =
+  Dimensions.get("window").height * 0.4;
+export const PHONE_VIEW_SCREEN_WIDTH_COLLAPSED =
+  Dimensions.get("window").width * 0.55;
+
+export const TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED =
+  Dimensions.get("window").height * 0.4;
+export const TABLET_VIEW_SCREEN_WIDTH_COLLAPSED =
+  Dimensions.get("window").width * 0.4;
+
+export const TABLET_VIEW_SCREEN_HEIGHT_EXPANDED =
+  Dimensions.get("window").height * 0.7;
+export const TABLET_VIEW_SCREEN_WIDTH_EXPANDED =
+  Dimensions.get("window").width * 0.7;

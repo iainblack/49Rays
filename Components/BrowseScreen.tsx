@@ -1,5 +1,5 @@
 import { getDeviceTypeAsync } from "expo-device";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Text,
   View,
@@ -8,17 +8,22 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
+import Animated, { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
+import { data } from "../utils/images";
 import { deviceTypeMap, fontFamily, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
+import Header from "./Header";
 
 interface CardScreenProps {
-  setHomeState: React.Dispatch<React.SetStateAction<HomeState>>;
-  scrollX: any;
+  setHomeState?: React.Dispatch<React.SetStateAction<HomeState>>;
+  scrollX?: any;
 }
 
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
   const [deviceType, setDeviceType] = React.useState<string>("phone");
+  const [showExpandedView, setShowExpandedView] = React.useState<boolean>(true);
+  const spinValue = useSharedValue<number>(0);
 
   useEffect(() => {
     getDeviceTypeAsync().then((deviceType) => {
@@ -28,13 +33,29 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
   }, []);
 
   return (
-    <SafeAreaView>
-      <CardCarousel scrollX={scrollX} />
+    <SafeAreaView
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        height: Dimensions.get("window").height,
+        width: Dimensions.get("window").width,
+      }}
+    >
+      <Header />
+      <CardCarousel
+        scrollX={scrollX}
+        spinValue={spinValue}
+        expandedView={showExpandedView}
+      />
       <View
         style={{
-          paddingBottom: 20,
-          justifyContent: "center",
+          width: "100%",
+          position: "absolute",
+          bottom: Dimensions.get("window").height * 0.1,
           alignItems: "center",
+          justifyContent: "space-around",
+          display: "flex",
+          flexDirection: "row",
         }}
       >
         <Pressable
@@ -47,12 +68,30 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
             },
             shadowRadius: 2,
           }}
-          onPress={() => setHomeState({ showCards: false })}
+          onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
         >
           <Text
             style={[styles.buttonText, { fontSize: normalize(18, deviceType) }]}
           >
-            Back
+            {showExpandedView ? "Flip" : "Flip All"}
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            shadowColor: "#000",
+            shadowOpacity: 1,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowRadius: 2,
+          }}
+          onPress={() => setShowExpandedView(!showExpandedView)}
+        >
+          <Text
+            style={[styles.buttonText, { fontSize: normalize(18, deviceType) }]}
+          >
+            {showExpandedView ? "Collapse" : "Expand"}
           </Text>
         </Pressable>
       </View>

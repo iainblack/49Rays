@@ -1,10 +1,10 @@
 import React from "react";
 import { useRef } from "react";
-import { Animated, StyleSheet, Dimensions } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import HomeScreen from "../components/HomeScreen";
-import CardScreen from "../components/CardScreen";
+import CardScreen from "../components/BrowseScreen";
 
 export interface HomeState {
   showCards: boolean;
@@ -35,12 +35,7 @@ export default function Home() {
         placeholder={blurHash}
         contentFit={"cover"}
       />
-      {!homeState.showCards && (
-        <HomeScreen homeState={homeState} setHomeState={setHomeState} />
-      )}
-      {homeState.showCards && (
-        <CardScreen setHomeState={setHomeState} scrollX={scrollX} />
-      )}
+      <CardScreen scrollX={scrollX} />
     </GestureHandlerRootView>
   );
 }
