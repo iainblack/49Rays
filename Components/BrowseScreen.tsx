@@ -22,7 +22,8 @@ interface CardScreenProps {
 
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
   const [deviceType, setDeviceType] = React.useState<string>("phone");
-  const [showExpandedView, setShowExpandedView] = React.useState<boolean>(true);
+  const [showExpandedView, setShowExpandedView] =
+    React.useState<boolean>(false);
   const spinValue = useSharedValue<number>(0);
 
   useEffect(() => {

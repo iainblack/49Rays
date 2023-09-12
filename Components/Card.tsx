@@ -76,6 +76,7 @@ const Styles = StyleSheet.create({
     height: "100%",
   },
   back: {
+    borderRadius: 16,
     width: "100%",
     height: "100%",
     backfaceVisibility: "hidden",
@@ -83,10 +84,10 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
+    borderRadius: 16,
     flex: 1,
     height: "100%",
     width: "100%",
-    borderRadius: 16,
     resizeMode: "stretch",
   },
 });

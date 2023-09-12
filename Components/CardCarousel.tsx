@@ -41,7 +41,6 @@ interface CardDisplayData {
 
 interface itemProps extends CardProps {
   index: number;
-  scrollX: number;
   cardHeight: number;
   cardWidth: number;
   expandedView: boolean;
@@ -99,33 +98,46 @@ export default function CardCarousel({
   useEffect(() => {
     getDeviceTypeAsync().then((deviceType) => {
       const thisDeviceType = deviceTypeMap[deviceType];
-      if (thisDeviceType === "phone") {
-        expandedView
-          ? setCardDisplayData({
-              deviceType: thisDeviceType,
-              cardHeight: PHONE_VIEW_SCREEN_HEIGHT_EXPANDED,
-              cardWidth: PHONE_VIEW_SCREEN_WIDTH_EXPANDED,
-            })
-          : setCardDisplayData({
-              deviceType: thisDeviceType,
-              cardHeight: PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
-              cardWidth: PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
-            });
-      } else if (thisDeviceType === "tablet") {
-        expandedView
-          ? setCardDisplayData({
-              deviceType: thisDeviceType,
-              cardHeight: TABLET_VIEW_SCREEN_HEIGHT_EXPANDED,
-              cardWidth: TABLET_VIEW_SCREEN_WIDTH_EXPANDED,
-            })
-          : setCardDisplayData({
-              deviceType: thisDeviceType,
-              cardHeight: TABLET_VIEW_SCREEN_HEIGHT_EXPANDED,
-              cardWidth: TABLET_VIEW_SCREEN_WIDTH_EXPANDED,
-            });
-      }
+      const height =
+        thisDeviceType === "phone"
+          ? PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED
+          : TABLET_VIEW_SCREEN_HEIGHT_EXPANDED;
+      const width =
+        thisDeviceType === "phone"
+          ? PHONE_VIEW_SCREEN_WIDTH_COLLAPSED
+          : TABLET_VIEW_SCREEN_WIDTH_EXPANDED;
+
+      setCardDisplayData({
+        ...cardDisplayData,
+        deviceType: thisDeviceType,
+        cardHeight: height,
+        cardWidth: width,
+      });
     });
-  }, [cardDisplayData]);
+  }, []);
+
+  useEffect(() => {
+    if (expandedView) {
+      window.scrollX = 0;
+      const position =
+        scrollX / (PHONE_VIEW_SCREEN_WIDTH_COLLAPSED + SPACING * 2);
+      const newScrollX =
+        position * (PHONE_VIEW_SCREEN_WIDTH_EXPANDED + SPACING * 2);
+      setScrollX(newScrollX);
+
+      setCardDisplayData({
+        ...cardDisplayData,
+        cardHeight: PHONE_VIEW_SCREEN_HEIGHT_EXPANDED,
+        cardWidth: PHONE_VIEW_SCREEN_WIDTH_EXPANDED,
+      });
+    } else {
+      setCardDisplayData({
+        ...cardDisplayData,
+        cardHeight: PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
+        cardWidth: PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
+      });
+    }
+  }, [expandedView]);
 
   return (
     <Animated.View
@@ -148,7 +160,6 @@ export default function CardCarousel({
               backImage={item.backImage}
               id={item.id}
               index={index}
-              scrollX={scrollX}
               spinValue={spinValue}
               cardHeight={cardDisplayData.cardHeight}
               cardWidth={cardDisplayData.cardWidth}
@@ -163,9 +174,7 @@ export default function CardCarousel({
         }}
         snapToAlignment={"center"}
         snapToInterval={
-          expandedView
-            ? cardDisplayData.cardWidth + SPACING * 2
-            : cardDisplayData.cardWidth + SPACING * 2
+          expandedView ? windowWidth : cardDisplayData.cardWidth + SPACING * 2
         }
         contentContainerStyle={{
           alignItems: "center",
@@ -182,7 +191,6 @@ export default function CardCarousel({
 
 const styles = StyleSheet.create({
   shadow: {
-    borderRadius: 16,
     shadowOffset: {
       width: 0,
       height: 0,
