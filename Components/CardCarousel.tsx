@@ -33,7 +33,7 @@ interface itemProps extends CardProps {
 }
 
 const SRC_WIDTH = Dimensions.get("window").width;
-const SPACING = SRC_WIDTH * 0.04;
+const SPACING = SRC_WIDTH * 0.02;
 
 function CarouselItem({
   frontImage,
@@ -120,8 +120,7 @@ export default function CardCarousel({
   return (
     <Animated.View
       style={{
-        height:
-          cardDisplayData.cardHeight + Dimensions.get("window").height * 0.2,
+        height: cardDisplayData.cardHeight + windowHeight * 0.2,
         width: windowWidth,
       }}
     >
@@ -150,7 +149,6 @@ export default function CardCarousel({
         }}
         decelerationRate={"fast"}
         bounces={false}
-        disableIntervalMomentum
         disableScrollViewPanResponder
         extraData={refresh}
       />
