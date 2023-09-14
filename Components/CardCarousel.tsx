@@ -1,36 +1,23 @@
-import { Image } from "expo-image";
 import React, { useEffect } from "react";
-import {
-  Dimensions,
-  FlatList,
-  ImageSourcePropType,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from "react-native";
-import { data } from "../utils/images";
+import { Dimensions, StyleSheet } from "react-native";
 import {
   deviceTypeMap,
   PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
-  PHONE_VIEW_SCREEN_HEIGHT_EXPANDED,
   PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
-  PHONE_VIEW_SCREEN_WIDTH_EXPANDED,
-  TABLET_VIEW_SCREEN_HEIGHT_EXPANDED,
-  TABLET_VIEW_SCREEN_WIDTH_EXPANDED,
+  TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED,
+  TABLET_VIEW_SCREEN_WIDTH_COLLAPSED,
 } from "../utils/utils";
 import Card, { CardProps } from "./Card";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { getDeviceTypeAsync } from "expo-device";
+import { data } from "../utils/images";
 
 interface CardCarouselProps {
   scrollX: Animated.Value;
   spinValue: Animated.SharedValue<number>;
-  expandedView: boolean;
+  flatListRef: React.RefObject<any>;
+  shuffleCount: number;
+  setShowShuffleOverlay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface CardDisplayData {
@@ -43,11 +30,10 @@ interface itemProps extends CardProps {
   index: number;
   cardHeight: number;
   cardWidth: number;
-  expandedView: boolean;
 }
 
 const SRC_WIDTH = Dimensions.get("window").width;
-const SPACING = SRC_WIDTH * 0.02;
+const SPACING = SRC_WIDTH * 0.04;
 
 function CarouselItem({
   frontImage,
@@ -56,17 +42,15 @@ function CarouselItem({
   spinValue,
   cardHeight,
   cardWidth,
-  expandedView,
 }: itemProps) {
   return (
     <Animated.View
       style={[
         {
           height: cardHeight,
-          width: expandedView ? Dimensions.get("window").width : cardWidth,
+          width: cardWidth,
           borderRadius: 16,
-          padding: expandedView ? 20 : 0,
-          marginHorizontal: expandedView ? 0 : SPACING,
+          marginHorizontal: SPACING,
         },
         styles.shadow,
       ]}
@@ -83,10 +67,12 @@ function CarouselItem({
 
 export default function CardCarousel({
   spinValue,
-  expandedView,
+  shuffleCount,
+  setShowShuffleOverlay,
 }: CardCarouselProps) {
+  const [refresh, setRefresh] = React.useState<boolean>(false);
+  const [dataArray, setDataArray] = React.useState<CardProps[]>(data);
   const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
-  const [scrollX, setScrollX] = React.useState(0);
   const [cardDisplayData, setCardDisplayData] = React.useState<CardDisplayData>(
     {
       deviceType: "phone",
@@ -101,11 +87,11 @@ export default function CardCarousel({
       const height =
         thisDeviceType === "phone"
           ? PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED
-          : TABLET_VIEW_SCREEN_HEIGHT_EXPANDED;
+          : TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED;
       const width =
         thisDeviceType === "phone"
           ? PHONE_VIEW_SCREEN_WIDTH_COLLAPSED
-          : TABLET_VIEW_SCREEN_WIDTH_EXPANDED;
+          : TABLET_VIEW_SCREEN_WIDTH_COLLAPSED;
 
       setCardDisplayData({
         ...cardDisplayData,
@@ -116,37 +102,26 @@ export default function CardCarousel({
     });
   }, []);
 
-  useEffect(() => {
-    if (expandedView) {
-      window.scrollX = 0;
-      const position =
-        scrollX / (PHONE_VIEW_SCREEN_WIDTH_COLLAPSED + SPACING * 2);
-      const newScrollX =
-        position * (PHONE_VIEW_SCREEN_WIDTH_EXPANDED + SPACING * 2);
-      setScrollX(newScrollX);
+  function shuffleDeck() {
+    if (shuffleCount === 0) return;
+    const shuffledData = dataArray.sort(() => Math.random() - 0.5);
+    setShowShuffleOverlay(true);
+    setDataArray(shuffledData);
+    setRefresh(!refresh);
+    setTimeout(() => {
+      setShowShuffleOverlay(false);
+    }, 1000);
+  }
 
-      setCardDisplayData({
-        ...cardDisplayData,
-        cardHeight: PHONE_VIEW_SCREEN_HEIGHT_EXPANDED,
-        cardWidth: PHONE_VIEW_SCREEN_WIDTH_EXPANDED,
-      });
-    } else {
-      setCardDisplayData({
-        ...cardDisplayData,
-        cardHeight: PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
-        cardWidth: PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
-      });
-    }
-  }, [expandedView]);
+  useEffect(() => {
+    shuffleDeck();
+  }, [shuffleCount]);
 
   return (
     <Animated.View
       style={{
-        height: expandedView
-          ? windowHeight * 0.8
-          : cardDisplayData.deviceType === "phone"
-          ? windowHeight * 0.5
-          : windowHeight * 0.8,
+        height:
+          cardDisplayData.cardHeight + Dimensions.get("window").height * 0.2,
         width: windowWidth,
       }}
     >
@@ -163,27 +138,21 @@ export default function CardCarousel({
               spinValue={spinValue}
               cardHeight={cardDisplayData.cardHeight}
               cardWidth={cardDisplayData.cardWidth}
-              expandedView={expandedView}
             />
           );
         }}
         initialNumToRender={5}
         keyExtractor={(item) => String(item.id)}
-        onScroll={(e) => {
-          setScrollX(e.nativeEvent.contentOffset.x);
-        }}
         snapToAlignment={"center"}
-        snapToInterval={
-          expandedView ? windowWidth : cardDisplayData.cardWidth + SPACING * 2
-        }
+        snapToInterval={cardDisplayData.cardWidth + SPACING * 2}
         contentContainerStyle={{
           alignItems: "center",
         }}
-        decelerationRate={expandedView ? "fast" : "fast"}
-        scrollEventThrottle={16}
+        decelerationRate={"fast"}
         bounces={false}
         disableIntervalMomentum
         disableScrollViewPanResponder
+        extraData={refresh}
       />
     </Animated.View>
   );

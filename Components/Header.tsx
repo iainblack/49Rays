@@ -6,8 +6,7 @@ export default function Header() {
     <View
       style={{
         width: "100%",
-        position: "absolute",
-        top: Dimensions.get("window").height * 0.05,
+        top: 0,
         alignItems: "center",
         justifyContent: "space-around",
         display: "flex",

@@ -1,6 +1,7 @@
 import { View, StyleSheet, Pressable, ImageSourcePropType } from "react-native";
 import React from "react";
 import Animated, {
+  FadeIn,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
@@ -49,16 +50,30 @@ const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
         height: "100%",
       }}
     >
-      {/* <Pressable onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}> */}
       <View style={{ width: "100%", height: "100%" }}>
-        <Animated.View style={[Styles.front, rStyle]}>
-          <Image style={Styles.image} source={frontImage} transition={1000} />
+        <Animated.View
+          style={[Styles.front, rStyle]}
+          entering={FadeIn.duration(1000)}
+        >
+          <Image
+            style={Styles.image}
+            source={frontImage}
+            transition={1000}
+            contentFit={"fill"}
+          />
         </Animated.View>
-        <Animated.View style={[Styles.back, bStyle]}>
-          <Image style={Styles.image} source={backImage} />
+        <Animated.View
+          style={[Styles.back, bStyle]}
+          entering={FadeIn.duration(1000)}
+        >
+          <Image
+            style={Styles.image}
+            source={backImage}
+            contentFit={"fill"}
+            transition={1000}
+          />
         </Animated.View>
       </View>
-      {/* </Pressable> */}
     </View>
   );
 };
@@ -88,6 +103,5 @@ const Styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     width: "100%",
-    resizeMode: "stretch",
   },
 });

@@ -1,5 +1,6 @@
 import { getDeviceTypeAsync } from "expo-device";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Text,
   View,
@@ -7,13 +8,12 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import Animated, { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
-import { data } from "../utils/images";
 import { deviceTypeMap, fontFamily, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
-import Header from "./Header";
 
 interface CardScreenProps {
   setHomeState?: React.Dispatch<React.SetStateAction<HomeState>>;
@@ -21,10 +21,12 @@ interface CardScreenProps {
 }
 
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
-  const [deviceType, setDeviceType] = React.useState<string>("phone");
-  const [showExpandedView, setShowExpandedView] =
+  const [showShuffleOverlay, setShowShuffleOverlay] =
     React.useState<boolean>(false);
+  const [shuffleCount, setShuffleCount] = React.useState<number>(0);
+  const [deviceType, setDeviceType] = React.useState<string>("phone");
   const spinValue = useSharedValue<number>(0);
+  const flatListRef = React.useRef(null);
 
   useEffect(() => {
     getDeviceTypeAsync().then((deviceType) => {
@@ -36,23 +38,38 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
   return (
     <SafeAreaView
       style={{
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "space-around",
         height: Dimensions.get("window").height,
         width: Dimensions.get("window").width,
       }}
     >
-      <Header />
+      <View
+        style={{
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <Text
+          style={[
+            styles.titleText,
+            {
+              fontSize: normalize(22, deviceType),
+            },
+          ]}
+        >
+          Browse the Deck
+        </Text>
+      </View>
       <CardCarousel
         scrollX={scrollX}
         spinValue={spinValue}
-        expandedView={showExpandedView}
+        flatListRef={flatListRef}
+        shuffleCount={shuffleCount}
+        setShowShuffleOverlay={setShowShuffleOverlay}
       />
       <View
         style={{
           width: "100%",
-          position: "absolute",
-          bottom: Dimensions.get("window").height * 0.1,
           alignItems: "center",
           justifyContent: "space-around",
           display: "flex",
@@ -71,11 +88,17 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
           }}
           onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
         >
-          <Text
-            style={[styles.buttonText, { fontSize: normalize(18, deviceType) }]}
-          >
-            {showExpandedView ? "Flip" : "Flip All"}
-          </Text>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <MaterialCommunityIcons name="rotate-360" size={32} color="white" />
+            <Text
+              style={[
+                styles.buttonText,
+                { fontSize: normalize(14, deviceType) },
+              ]}
+            >
+              {"Flip All"}
+            </Text>
+          </View>
         </Pressable>
         <Pressable
           style={{
@@ -87,15 +110,42 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
             },
             shadowRadius: 2,
           }}
-          onPress={() => setShowExpandedView(!showExpandedView)}
+          onPress={() => setShuffleCount(shuffleCount + 1)}
         >
-          <Text
-            style={[styles.buttonText, { fontSize: normalize(18, deviceType) }]}
-          >
-            {showExpandedView ? "Collapse" : "Expand"}
-          </Text>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <MaterialCommunityIcons
+              name="shuffle-variant"
+              size={32}
+              color="white"
+            />
+            <Text
+              style={[
+                styles.buttonText,
+                { fontSize: normalize(14, deviceType) },
+              ]}
+            >
+              {"Shuffle"}
+            </Text>
+          </View>
         </Pressable>
       </View>
+      {/* {showShuffleOverlay && (
+        <Animated.View
+          style={{
+            position: "absolute",
+            top: 0,
+            height: Dimensions.get("window").height,
+            width: Dimensions.get("window").width,
+            //blur background
+
+            opacity: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ActivityIndicator size="large" color="white" />
+        </Animated.View>
+      )} */}
     </SafeAreaView>
   );
 }
@@ -117,6 +167,17 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 15,
+  },
+  titleText: {
+    color: "white",
+    fontFamily: fontFamily,
+    shadowColor: "#000",
+    shadowOpacity: 5,
     shadowOffset: {
       width: 0,
       height: 0,

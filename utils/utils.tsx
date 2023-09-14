@@ -31,9 +31,9 @@ export const PHONE_VIEW_SCREEN_WIDTH_EXPANDED =
   Dimensions.get("window").width * 0.95;
 
 export const PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED =
-  Dimensions.get("window").height * 0.4;
+  Dimensions.get("window").height * 0.5;
 export const PHONE_VIEW_SCREEN_WIDTH_COLLAPSED =
-  Dimensions.get("window").width * 0.55;
+  Dimensions.get("window").width * 0.75;
 
 export const TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED =
   Dimensions.get("window").height * 0.4;
