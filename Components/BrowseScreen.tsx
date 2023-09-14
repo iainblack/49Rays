@@ -18,31 +18,25 @@ import CardCarousel from "./CardCarousel";
 interface CardScreenProps {
   setHomeState?: React.Dispatch<React.SetStateAction<HomeState>>;
   scrollX?: any;
+  deviceType: string;
 }
 
-export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
+export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
   const [shuffleCount, setShuffleCount] = React.useState<number>(0);
-  const [deviceType, setDeviceType] = React.useState<string>("phone");
   const spinValue = useSharedValue<number>(0);
   const flatListRef = React.useRef(null);
 
-  useEffect(() => {
-    getDeviceTypeAsync().then((deviceType) => {
-      const thisDeviceType = deviceTypeMap[deviceType];
-      setDeviceType(thisDeviceType);
-    });
-  }, []);
-
   return (
-    <SafeAreaView
+    <View
       style={{
         justifyContent: "space-around",
-        height: Dimensions.get("window").height,
         width: Dimensions.get("window").width,
+        height: "100%",
       }}
     >
       <View
         style={{
+          paddingTop: Dimensions.get("window").height * 0.1,
           alignItems: "center",
           width: "100%",
         }}
@@ -126,7 +120,7 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
           </View>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
