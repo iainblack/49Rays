@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dimensions, StyleSheet } from "react-native";
+import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 import {
   deviceTypeMap,
   PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
@@ -17,7 +17,6 @@ interface CardCarouselProps {
   spinValue: Animated.SharedValue<number>;
   flatListRef: React.RefObject<any>;
   shuffleCount: number;
-  setShowShuffleOverlay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface CardDisplayData {
@@ -30,6 +29,7 @@ interface itemProps extends CardProps {
   index: number;
   cardHeight: number;
   cardWidth: number;
+  shuffling: boolean;
 }
 
 const SRC_WIDTH = Dimensions.get("window").width;
@@ -42,11 +42,14 @@ function CarouselItem({
   spinValue,
   cardHeight,
   cardWidth,
+  shuffling,
 }: itemProps) {
   return (
     <Animated.View
       style={[
         {
+          alignItems: "center",
+          justifyContent: "center",
           height: cardHeight,
           width: cardWidth,
           borderRadius: 16,
@@ -55,12 +58,14 @@ function CarouselItem({
         styles.shadow,
       ]}
     >
-      <Card
-        frontImage={frontImage}
-        backImage={backImage}
-        id={id}
-        spinValue={spinValue}
-      />
+      {!shuffling && (
+        <Card
+          frontImage={frontImage}
+          backImage={backImage}
+          id={id}
+          spinValue={spinValue}
+        />
+      )}
     </Animated.View>
   );
 }
@@ -68,8 +73,9 @@ function CarouselItem({
 export default function CardCarousel({
   spinValue,
   shuffleCount,
-  setShowShuffleOverlay,
 }: CardCarouselProps) {
+  const [showShuffleOverlay, setShowShuffleOverlay] =
+    React.useState<boolean>(false);
   const [refresh, setRefresh] = React.useState<boolean>(false);
   const [dataArray, setDataArray] = React.useState<CardProps[]>(data);
   const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
@@ -110,7 +116,7 @@ export default function CardCarousel({
     setRefresh(!refresh);
     setTimeout(() => {
       setShowShuffleOverlay(false);
-    }, 1000);
+    }, 200);
   }
 
   useEffect(() => {
@@ -137,6 +143,7 @@ export default function CardCarousel({
               spinValue={spinValue}
               cardHeight={cardDisplayData.cardHeight}
               cardWidth={cardDisplayData.cardWidth}
+              shuffling={showShuffleOverlay}
             />
           );
         }}

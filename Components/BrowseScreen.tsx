@@ -21,8 +21,6 @@ interface CardScreenProps {
 }
 
 export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
-  const [showShuffleOverlay, setShowShuffleOverlay] =
-    React.useState<boolean>(false);
   const [shuffleCount, setShuffleCount] = React.useState<number>(0);
   const [deviceType, setDeviceType] = React.useState<string>("phone");
   const spinValue = useSharedValue<number>(0);
@@ -65,7 +63,6 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
         spinValue={spinValue}
         flatListRef={flatListRef}
         shuffleCount={shuffleCount}
-        setShowShuffleOverlay={setShowShuffleOverlay}
       />
       <View
         style={{
@@ -129,23 +126,6 @@ export default function CardScreen({ setHomeState, scrollX }: CardScreenProps) {
           </View>
         </Pressable>
       </View>
-      {/* {showShuffleOverlay && (
-        <Animated.View
-          style={{
-            position: "absolute",
-            top: 0,
-            height: Dimensions.get("window").height,
-            width: Dimensions.get("window").width,
-            //blur background
-
-            opacity: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ActivityIndicator size="large" color="white" />
-        </Animated.View>
-      )} */}
     </SafeAreaView>
   );
 }
