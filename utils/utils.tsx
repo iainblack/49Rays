@@ -1,4 +1,4 @@
-import { Platform, Dimensions, PixelRatio } from "react-native";
+import { Platform, Dimensions, PixelRatio, StyleSheet } from "react-native";
 import { DeviceType } from "expo-device";
 
 export const AuthorInfo =
@@ -44,3 +44,17 @@ export const TABLET_VIEW_SCREEN_HEIGHT_EXPANDED =
   Dimensions.get("window").height * 0.7;
 export const TABLET_VIEW_SCREEN_WIDTH_EXPANDED =
   Dimensions.get("window").width * 0.7;
+
+export const globalStyles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#000",
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 5,
+  },
+});
+
+export const COLOR_VIOLET = "rgb(151,120,209)";

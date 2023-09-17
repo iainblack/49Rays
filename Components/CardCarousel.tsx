@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 import {
   deviceTypeMap,
+  globalStyles,
   PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
   PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
   TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED,

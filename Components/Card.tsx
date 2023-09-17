@@ -2,6 +2,7 @@ import { View, StyleSheet, Pressable, ImageSourcePropType } from "react-native";
 import React from "react";
 import Animated, {
   FadeIn,
+  FadeOut,
   interpolate,
   useAnimatedStyle,
   useSharedValue,

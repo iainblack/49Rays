@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import Animated, { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
-import { deviceTypeMap, fontFamily, normalize } from "../utils/utils";
+import { fontFamily, globalStyles, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
 
 interface CardScreenProps {
@@ -44,6 +44,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
         <Text
           style={[
             styles.titleText,
+            globalStyles.shadow,
             {
               fontSize: normalize(22, deviceType),
             },
@@ -68,15 +69,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
         }}
       >
         <Pressable
-          style={{
-            shadowColor: "#000",
-            shadowOpacity: 1,
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowRadius: 2,
-          }}
+          style={[globalStyles.shadow]}
           onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
         >
           <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -84,6 +77,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
             <Text
               style={[
                 styles.buttonText,
+                globalStyles.shadow,
                 { fontSize: normalize(14, deviceType) },
               ]}
             >
@@ -92,15 +86,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
           </View>
         </Pressable>
         <Pressable
-          style={{
-            shadowColor: "#000",
-            shadowOpacity: 1,
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowRadius: 2,
-          }}
+          style={[globalStyles.shadow]}
           onPress={() => setShuffleCount(shuffleCount + 1)}
         >
           <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -112,6 +98,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
             <Text
               style={[
                 styles.buttonText,
+                globalStyles.shadow,
                 { fontSize: normalize(14, deviceType) },
               ]}
             >
@@ -125,37 +112,12 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "transparent",
-    margin: 10,
-    shadowColor: "#000",
-    shadowOpacity: 5,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 15,
-  },
   buttonText: {
     color: "white",
     fontFamily: fontFamily,
-    shadowColor: "#000",
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 15,
   },
   titleText: {
     color: "white",
     fontFamily: fontFamily,
-    shadowColor: "#000",
-    shadowOpacity: 5,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 15,
   },
 });

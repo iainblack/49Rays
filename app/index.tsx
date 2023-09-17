@@ -52,13 +52,13 @@ export default function Home() {
           setShowAboutOverlay={setShowAboutOverlay}
         />
         <CardScreen scrollX={scrollX} deviceType={deviceType} />
+        {showAboutOverlay && (
+          <AboutOverlay
+            setShowAboutOverlay={setShowAboutOverlay}
+            deviceType={deviceType}
+          />
+        )}
       </SafeAreaView>
-      {showAboutOverlay && (
-        <AboutOverlay
-          setShowAboutOverlay={setShowAboutOverlay}
-          deviceType={deviceType}
-        />
-      )}
     </View>
   );
 }
