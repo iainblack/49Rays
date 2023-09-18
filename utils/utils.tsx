@@ -63,3 +63,209 @@ export enum IconNames {
   close = "close",
   chevronLeft = "chevron-left",
 }
+
+export const rayData = [
+  {
+    title: "Ray 1",
+    description: "Blue Ray of God's Will or Power.",
+  },
+  {
+    title: "Ray 2",
+    description: "Yellow ray of enlightenment, love, and wisdom.",
+  },
+  {
+    title: "Ray 3",
+    description: "Pink ray of divine love and active intelligence.",
+  },
+  {
+    title: "Ray 4",
+    description:
+      "White ray of purity, ray of divine mother, harmony through conflict.",
+  },
+  {
+    title: "Ray 5",
+    description: "Green ray of truth, concrete knowledge, and science.",
+  },
+  {
+    title: "Ray 6",
+    description: "Ruby ray of ministering grace, idealism and devotion.",
+  },
+  {
+    title: "Ray 7",
+    description: "Violet flame of transmutation",
+  },
+  {
+    title: "Lord of the Seven Rays",
+  },
+  {
+    title: "Ray 8",
+    description: "Aquamarine ray of clarity and transfiguration.",
+  },
+  {
+    title: "Ray 9",
+    description: "Magenta ray of harmony.",
+  },
+  {
+    title: "Ray 10",
+    description: "Golden ray of eternal peace.",
+  },
+  {
+    title: "Ray 11",
+    description: "Peach ray of divine purpose.",
+  },
+  {
+    title: "Ray 12",
+    description: "Opal ray of transformation.",
+  },
+  {
+    title: "Ray 13",
+    description: "Silver ray of purification.",
+  },
+  {
+    title: "Ray 14",
+    description:
+      "Pearlescent red orange ray of dematerialization and re-materialization.",
+  },
+  {
+    title: "Ray 15",
+    description: "Pearlescent green ray of solidarity of purpose.",
+  },
+  {
+    title: "Ray 16",
+    description: "Pearlescent peach ray of right use of free will.",
+  },
+  {
+    title: "Ray 17",
+    description: "Pearlescent fuchisa ray of personal empowerment.",
+  },
+  {
+    title: "Ray 18",
+    description: "Opalescent lavender ray of science and medicine.",
+  },
+  {
+    title: "Ray 19",
+    description:
+      "Opalescent turquoise ray of changing DNA to increase human brain capacity and use.",
+  },
+  {
+    title: "Ray 20",
+    description: "Opalescent royal blue ray of earth magma control.",
+  },
+  {
+    title: "Ray 21",
+    description: "Opalescent chartruese ray of climate control.",
+  },
+  {
+    title: "Ray 22",
+    description: "Opalescent ray of emerald fire.",
+  },
+  {
+    title: "Ray 23",
+    description: "Opalescent white ray of tachyon energy.",
+  },
+  {
+    title: "Ray 24",
+    description: "Pearlescent lavender ray of control of linear time.",
+  },
+  {
+    title: "Ray 25",
+    description: "Pearlescent royal blue ray devotion.",
+  },
+  {
+    title: "Ray 26",
+    description: "Pearlescent yellow ray of mental clarity.",
+  },
+  {
+    title: "Ray 27",
+    description: "Pastel blue ray of tranquility.",
+  },
+  {
+    title: "Ray 28",
+    description: "Pastel lavender ray of grace.",
+  },
+  {
+    title: "Ray 29",
+    description: "Brown ray of stability.",
+  },
+  {
+    title: "Ray 30",
+    description: "Avocado green ray of attention.",
+  },
+  {
+    title: "Ray 31",
+    description: "Yellow ochre ray of understanding.",
+  },
+  {
+    title: "Ray 32",
+    description: "Pastel yellow ray of compassion and insight.",
+  },
+  {
+    title: "Ray 33",
+    description: "Pastel green ray of regeneration.",
+  },
+  {
+    title: "Ray 34",
+    description: "Obsidian ray of densification.",
+  },
+  {
+    title: "Ray 35",
+    description: "Pastel red ray of glorification.",
+  },
+  {
+    title: "Ray 36",
+    description: "Red earth ray of consciousness of earth as a sentient being.",
+  },
+  {
+    title: "Ray 37",
+    description: "Burnt orange ray of discernment and discrimination.",
+  },
+  {
+    title: "Ray 38",
+    description: "Navy blue ray of intuitive awareness.",
+  },
+  {
+    title: "Ray 39",
+    description: "Metallic gray ray of industrial science and engineering.",
+  },
+  {
+    title: "Ray 40",
+    description: "Metallic copper ray of electrical power.",
+  },
+  {
+    title: "Ray 41",
+    description: "Flourescent orange ray of goodwill.",
+  },
+  {
+    title: "Ray 42",
+    description: "Metallic red ray of ignition.",
+  },
+  {
+    title: "Ray 43",
+    description: "Flourescent yellow ray of temperance.",
+  },
+  {
+    title: "Ray 44",
+    description: "Flourescent green ray of tolerance.",
+  },
+  {
+    title: "Ray 45",
+    description: "Flourescent white ray of harmony in family groups.",
+  },
+  {
+    title: "Ray 46",
+    description: "turquoise ray of gentleness.",
+  },
+  {
+    title: "Ray 47",
+    description: "Tan or taupe ray of grounding in harmony.",
+  },
+  {
+    title: "Ray 48",
+    description: "Rainbow ray visionary consciousness in induviduals.",
+  },
+  {
+    title: "Ray 49",
+    description:
+      "Rainnbow ray of visionary consciousness in the collective of humanity.",
+  },
+];
