@@ -1,18 +1,9 @@
-import { getDeviceTypeAsync } from "expo-device";
 import React, { useEffect } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {
-  Text,
-  View,
-  Pressable,
-  StyleSheet,
-  SafeAreaView,
-  Dimensions,
-  ActivityIndicator,
-} from "react-native";
+import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import Animated, { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
-import { fontFamily, globalStyles, normalize } from "../utils/utils";
+import { globalStyles, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
 
 interface CardScreenProps {
@@ -66,6 +57,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
           justifyContent: "space-around",
           display: "flex",
           flexDirection: "row",
+          marginBottom: Dimensions.get("window").height * 0.05,
         }}
       >
         <Pressable
@@ -114,10 +106,8 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
 const styles = StyleSheet.create({
   buttonText: {
     color: "white",
-    fontFamily: fontFamily,
   },
   titleText: {
     color: "white",
-    fontFamily: fontFamily,
   },
 });

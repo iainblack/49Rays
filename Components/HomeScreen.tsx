@@ -3,9 +3,8 @@ import { Link } from "expo-router";
 import React, { useEffect } from "react";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeState } from "../app";
-import { deviceTypeMap, fontFamily, normalize } from "../utils/utils";
+import { deviceTypeMap, normalize } from "../utils/utils";
 
 interface HomeScreenProps {
   setHomeState: React.Dispatch<React.SetStateAction<HomeState>>;
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 1,
     shadowOffset: {
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
   titleText: {
     color: "white",
     fontWeight: "bold",
-    fontFamily: fontFamily,
     shadowColor: "#000",
     shadowOpacity: 5,
     shadowOffset: {

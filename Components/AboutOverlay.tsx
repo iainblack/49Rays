@@ -6,10 +6,15 @@ import {
   SafeAreaView,
   useWindowDimensions,
 } from "react-native";
-import { globalStyles, normalize, COLOR_VIOLET } from "../utils/utils";
-import CloseHeader from "./CloseHeader";
+import {
+  globalStyles,
+  normalize,
+  COLOR_VIOLET,
+  IconNames,
+} from "../utils/utils";
 import { Link } from "expo-router";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
+import IconHeader from "./IconHeader";
 
 interface AboutOverlayProps {
   setShowAboutOverlay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,16 +44,17 @@ export default function AboutOverlay({
       ]}
     >
       <SafeAreaView>
-        <CloseHeader
-          onClose={() => setShowAboutOverlay(false)}
-          deviceType={deviceType}
-        />
         <View
           style={{
             width: width,
             padding: 20,
           }}
         >
+          <IconHeader
+            onClose={() => setShowAboutOverlay(false)}
+            deviceType={deviceType}
+            iconName={IconNames.close}
+          />
           <View style={{}}>
             <Text
               style={[styles.text, { fontSize: normalize(18, deviceType) }]}

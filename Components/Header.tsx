@@ -6,11 +6,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 interface HeaderProps {
   deviceType: string;
   setShowAboutOverlay?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Header({
   deviceType,
   setShowAboutOverlay,
+  setShowMenu,
 }: HeaderProps) {
   return (
     <View
@@ -26,7 +28,11 @@ export default function Header({
         padding: Dimensions.get("window").width * 0.05,
       }}
     >
-      <Pressable>
+      <Pressable
+        onPress={() => {
+          setShowMenu(true);
+        }}
+      >
         <MaterialIcons
           name="menu"
           size={deviceType === "phone" ? 28 : 32}
