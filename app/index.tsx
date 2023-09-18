@@ -3,24 +3,19 @@ import { useRef } from "react";
 import { Animated, SafeAreaView, StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import HomeScreen from "../components/HomeScreen";
 import CardScreen from "../components/BrowseScreen";
 import Header from "../components/Header";
 import { getDeviceTypeAsync } from "expo-device";
 import { deviceTypeMap } from "../utils/utils";
 import AboutOverlay from "../components/AboutOverlay";
 import Menu from "../components/Menu/Menu";
-//import * as SplashScreen from "expo-splash-screen";
-
-//SplashScreen.preventAutoHideAsync();
+import * as SplashScreen from "expo-splash-screen";
 
 export interface HomeState {
   showCards: boolean;
 }
 
 export default function Home() {
-  // const [appIsReady, setAppIsReady] = React.useState(false);
-
   const [showAboutOverlay, setShowAboutOverlay] =
     React.useState<boolean>(false);
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -29,43 +24,31 @@ export default function Home() {
   const scrollX = useRef(new Animated.Value(0)).current;
   const blurHash = "LhJt0pD%-m%1},V_xFs:rEs;Vbe:";
 
-  // useEffect(() => {
-  //   async function prepare() {
-  //     try {
-  //       //Load device type
-  //       const deviceType = await getDeviceTypeAsync();
-  //       const thisDeviceType = deviceTypeMap[deviceType];
-  //       setDeviceType(thisDeviceType);
+  SplashScreen.preventAutoHideAsync();
 
-  //       // load background image
-  //       Image.prefetch(require("../assets/bg.jpg"));
-  //     } catch (e) {
-  //       console.warn(e);
-  //     } finally {
-  //       //setAppIsReady(true);
-  //     }
-  //   }
-  //   prepare();
-  // }, []);
-
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (appIsReady) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [appIsReady]);
-
-  // if (!appIsReady) {
-  //   return null;
-  // }
   useEffect(() => {
-    getDeviceTypeAsync().then((deviceType) => {
-      const thisDeviceType = deviceTypeMap[deviceType];
-      setDeviceType(thisDeviceType);
-    });
+    async function prepare() {
+      try {
+        //Load device type
+        const deviceType = await getDeviceTypeAsync();
+        const thisDeviceType = deviceTypeMap[deviceType];
+        setDeviceType(thisDeviceType);
+
+        // load background image
+        Image.prefetch(require("../assets/bg.jpg"));
+
+        await new Promise((resolve) => setTimeout(resolve, 9000));
+      } catch (e) {
+        //console.warn(e);
+      } finally {
+        //await SplashScreen.hideAsync();
+      }
+    }
+    prepare();
   }, []);
+
   return (
     <View
-      //onLayout={onLayoutRootView}
       style={[
         {
           flex: 1,
@@ -103,7 +86,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
     justifyContent: "center",
   },
 });
