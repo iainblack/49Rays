@@ -36,12 +36,10 @@ export default function Home() {
 
         // load background image
         Image.prefetch(require("../assets/bg.jpg"));
-
-        await new Promise((resolve) => setTimeout(resolve, 9000));
       } catch (e) {
         //console.warn(e);
       } finally {
-        //await SplashScreen.hideAsync();
+        await SplashScreen.hideAsync();
       }
     }
     prepare();
