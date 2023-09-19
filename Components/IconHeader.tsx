@@ -20,7 +20,7 @@ export default function IconHeader({
     <View
       style={[
         {
-          zIndex: 1000,
+          zIndex: 10,
           top: Dimensions.get("window").height * 0.01,
           width: "100%",
           alignItems: "center",

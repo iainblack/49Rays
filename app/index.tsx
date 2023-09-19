@@ -9,7 +9,9 @@ import { getDeviceTypeAsync } from "expo-device";
 import { deviceTypeMap } from "../utils/utils";
 import AboutOverlay from "../components/AboutOverlay";
 import Menu from "../components/Menu/Menu";
-import * as SplashScreen from "expo-splash-screen";
+import { SplashScreen } from "expo-router";
+
+SplashScreen.preventAutoHideAsync();
 
 export interface HomeState {
   showCards: boolean;
@@ -24,8 +26,6 @@ export default function Home() {
   const scrollX = useRef(new Animated.Value(0)).current;
   const blurHash = "LhJt0pD%-m%1},V_xFs:rEs;Vbe:";
 
-  SplashScreen.preventAutoHideAsync();
-
   useEffect(() => {
     async function prepare() {
       try {
@@ -33,17 +33,16 @@ export default function Home() {
         const deviceType = await getDeviceTypeAsync();
         const thisDeviceType = deviceTypeMap[deviceType];
         setDeviceType(thisDeviceType);
-
-        // load background image
-        Image.prefetch(require("../assets/bg.jpg"));
       } catch (e) {
-        //console.warn(e);
-      } finally {
-        await SplashScreen.hideAsync();
+        console.warn(e);
       }
     }
     prepare();
   }, []);
+
+  setTimeout(() => {
+    SplashScreen.hideAsync();
+  }, 500);
 
   return (
     <View
@@ -67,15 +66,41 @@ export default function Home() {
           deviceType={deviceType}
           setShowAboutOverlay={setShowAboutOverlay}
           setShowMenu={setShowMenu}
+          showAboutOverlay={showAboutOverlay}
+          showMenu={showMenu}
         />
         <CardScreen scrollX={scrollX} deviceType={deviceType} />
         {showAboutOverlay && (
-          <AboutOverlay
-            setShowAboutOverlay={setShowAboutOverlay}
-            deviceType={deviceType}
-          />
+          <>
+            <AboutOverlay
+              setShowAboutOverlay={setShowAboutOverlay}
+              deviceType={deviceType}
+            />
+            <View
+              style={[
+                StyleSheet.absoluteFillObject,
+                {
+                  backgroundColor: "rgba(0,0,0,0.8)",
+                  zIndex: 20,
+                },
+              ]}
+            />
+          </>
         )}
-        {showMenu && <Menu deviceType={deviceType} setShowMenu={setShowMenu} />}
+        {showMenu && (
+          <>
+            <Menu deviceType={deviceType} setShowMenu={setShowMenu} />
+            <View
+              style={[
+                StyleSheet.absoluteFillObject,
+                {
+                  backgroundColor: "rgba(0,0,0,0.8)",
+                  zIndex: 20,
+                },
+              ]}
+            />
+          </>
+        )}
       </SafeAreaView>
     </View>
   );

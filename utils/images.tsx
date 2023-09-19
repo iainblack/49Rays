@@ -1,26 +1,6 @@
 import { CardProps } from "../components/Card";
 
 export const data: CardProps[] = [
-  // {
-  //   frontImage: require("../assets/rayIntro.jpg"),
-  //   backImage: require("../assets/bg.jpg"),
-  //   id: -3,
-  // },
-  // {
-  //   frontImage: require("../assets/index-1.jpg"),
-  //   backImage: require("../assets/index-2.jpg"),
-  //   id: -2,
-  // },
-  // {
-  //   frontImage: require("../assets/index-3.jpg"),
-  //   backImage: require("../assets/index-4.jpg"),
-  //   id: -1,
-  // },
-  // {
-  //   frontImage: require("../assets/front/titleFront.jpg"),
-  //   backImage: require("../assets/back/titleBack.jpg"),
-  //   id: 0,
-  // },
   {
     frontImage: require("../assets/front/ray1Image.jpg"),
     backImage: require("../assets/back/ray1Text.jpg"),

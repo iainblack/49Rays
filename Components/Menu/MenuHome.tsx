@@ -43,7 +43,11 @@ export default function MenuHome({
       >
         <View style={[styles.listItem]}>
           <View style={[styles.iconContainer]}>
-            <MaterialIcons name="people" size={24} color="white" />
+            <MaterialIcons
+              name="people"
+              size={deviceType === "phone" ? 24 : 30}
+              color="white"
+            />
             <Text
               style={[
                 styles.text,
@@ -53,7 +57,11 @@ export default function MenuHome({
               Author Info
             </Text>
           </View>
-          <MaterialIcons name="chevron-right" size={18} color="white" />
+          <MaterialIcons
+            name="chevron-right"
+            size={deviceType === "phone" ? 18 : 28}
+            color="white"
+          />
         </View>
       </Pressable>
       <Divider />
@@ -64,7 +72,11 @@ export default function MenuHome({
       >
         <View style={[styles.listItem]}>
           <View style={[styles.iconContainer]}>
-            <MaterialCommunityIcons name="magnify" size={24} color="white" />
+            <MaterialCommunityIcons
+              name="magnify"
+              size={deviceType === "phone" ? 24 : 30}
+              color="white"
+            />
             <Text
               style={[
                 styles.text,
@@ -74,7 +86,12 @@ export default function MenuHome({
               Card Index
             </Text>
           </View>
-          <MaterialIcons name="chevron-right" size={18} color="white" />
+          <MaterialIcons
+            name="chevron-right"
+            s
+            size={deviceType === "phone" ? 18 : 28}
+            color="white"
+          />
         </View>
       </Pressable>
       <Divider />
@@ -87,7 +104,7 @@ export default function MenuHome({
           <View style={[styles.iconContainer]}>
             <MaterialCommunityIcons
               name="script-text-outline"
-              size={24}
+              size={deviceType === "phone" ? 24 : 30}
               color="white"
             />
             <Text
@@ -99,7 +116,11 @@ export default function MenuHome({
               Suggested Prayer
             </Text>
           </View>
-          <MaterialIcons name="chevron-right" size={18} color="white" />
+          <MaterialIcons
+            name="chevron-right"
+            size={deviceType === "phone" ? 18 : 28}
+            color="white"
+          />
         </View>
       </Pressable>
     </Animated.View>

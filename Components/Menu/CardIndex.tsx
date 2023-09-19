@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { IconNames, normalize, rayData } from "../../utils/utils";
 import IconHeader from "../IconHeader";
+import Divider from "../Divider";
 
 interface CardIndexProps {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -49,6 +50,7 @@ export default function CardIndex({
           >
             Card Index
           </Text>
+          <Divider />
           <ScrollView style={{ height: "90%" }} bounces={false}>
             {rayData.map((rayIndex, index) => (
               <Row

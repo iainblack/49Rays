@@ -7,17 +7,21 @@ interface HeaderProps {
   deviceType: string;
   setShowAboutOverlay?: React.Dispatch<React.SetStateAction<boolean>>;
   setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
+  showAboutOverlay?: boolean;
+  showMenu?: boolean;
 }
 
 export default function Header({
   deviceType,
   setShowAboutOverlay,
   setShowMenu,
+  showAboutOverlay,
+  showMenu,
 }: HeaderProps) {
   return (
     <View
       style={{
-        zIndex: 1000,
+        zIndex: 10,
         position: "absolute",
         top: Dimensions.get("window").height * 0.05,
         width: "100%",
@@ -30,7 +34,7 @@ export default function Header({
     >
       <Pressable
         onPress={() => {
-          setShowMenu(true);
+          !showAboutOverlay && setShowMenu(true);
         }}
       >
         <MaterialIcons
@@ -41,7 +45,7 @@ export default function Header({
       </Pressable>
       <Pressable
         onPress={() => {
-          setShowAboutOverlay(true);
+          !showMenu && setShowAboutOverlay(true);
         }}
       >
         <FontAwesome5

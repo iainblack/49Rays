@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import Animated, { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
@@ -13,7 +13,8 @@ interface CardScreenProps {
 }
 
 export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
-  const [shuffleCount, setShuffleCount] = React.useState<number>(0);
+  const [isShuffled, setIsShuffled] = React.useState<boolean>(false);
+  const shuffleCount = React.useRef<number>(0);
   const spinValue = useSharedValue<number>(0);
   const flatListRef = React.useRef(null);
 
@@ -48,7 +49,8 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
         scrollX={scrollX}
         spinValue={spinValue}
         flatListRef={flatListRef}
-        shuffleCount={shuffleCount}
+        shuffleCount={shuffleCount.current}
+        isShuffled={isShuffled}
       />
       <View
         style={{
@@ -57,7 +59,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
           justifyContent: "space-around",
           display: "flex",
           flexDirection: "row",
-          marginBottom: Dimensions.get("window").height * 0.05,
+          marginVertical: Dimensions.get("window").height * 0.05,
         }}
       >
         <Pressable
@@ -65,7 +67,11 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
           onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
         >
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <MaterialCommunityIcons name="rotate-360" size={32} color="white" />
+            <MaterialCommunityIcons
+              name="rotate-360"
+              size={deviceType === "phone" ? 32 : 40}
+              color="white"
+            />
             <Text
               style={[
                 styles.buttonText,
@@ -79,14 +85,25 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
         </Pressable>
         <Pressable
           style={[globalStyles.shadow]}
-          onPress={() => setShuffleCount(shuffleCount + 1)}
+          onPress={() => {
+            shuffleCount.current += 1;
+            setIsShuffled(!isShuffled);
+          }}
         >
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <MaterialCommunityIcons
-              name="shuffle-variant"
-              size={32}
-              color="white"
-            />
+            {isShuffled ? (
+              <MaterialIcons
+                name="replay"
+                size={deviceType === "phone" ? 32 : 40}
+                color="white"
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="shuffle-variant"
+                size={deviceType === "phone" ? 32 : 40}
+                color="white"
+              />
+            )}
             <Text
               style={[
                 styles.buttonText,
@@ -94,7 +111,7 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
                 { fontSize: normalize(14, deviceType) },
               ]}
             >
-              {"Shuffle"}
+              {isShuffled ? "Reset" : "Shuffle"}
             </Text>
           </View>
         </Pressable>

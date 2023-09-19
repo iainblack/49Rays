@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import {
   deviceTypeMap,
-  globalStyles,
   PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
   PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
   TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED,
@@ -11,12 +10,13 @@ import {
 import Card, { CardProps } from "./Card";
 import Animated from "react-native-reanimated";
 import { getDeviceTypeAsync } from "expo-device";
-import { data } from "../utils/images";
+import { data as defaultData } from "../utils/images";
 
 interface CardCarouselProps {
   scrollX: Animated.Value;
   spinValue: Animated.SharedValue<number>;
   flatListRef: React.RefObject<any>;
+  isShuffled: boolean;
   shuffleCount: number;
 }
 
@@ -73,12 +73,15 @@ function CarouselItem({
 
 export default function CardCarousel({
   spinValue,
+  isShuffled,
   shuffleCount,
 }: CardCarouselProps) {
   const [showShuffleOverlay, setShowShuffleOverlay] =
     React.useState<boolean>(false);
   const [refresh, setRefresh] = React.useState<boolean>(false);
-  const [dataArray, setDataArray] = React.useState<CardProps[]>(data);
+  const [dataArray, setDataArray] = React.useState<CardProps[]>([
+    ...defaultData,
+  ]);
   const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
   const [cardDisplayData, setCardDisplayData] = React.useState<CardDisplayData>(
     {
@@ -111,18 +114,27 @@ export default function CardCarousel({
 
   function shuffleDeck() {
     if (shuffleCount === 0) return;
-    const shuffledData = dataArray.sort(() => Math.random() - 0.5);
-    setShowShuffleOverlay(true);
-    setDataArray(shuffledData);
-    setRefresh(!refresh);
-    setTimeout(() => {
-      setShowShuffleOverlay(false);
-    }, 200);
+    if (isShuffled) {
+      const shuffledData = dataArray.sort(() => Math.random() - 0.5);
+      setShowShuffleOverlay(true);
+      setDataArray(shuffledData);
+      setRefresh(!refresh);
+      setTimeout(() => {
+        setShowShuffleOverlay(false);
+      }, 200);
+    } else {
+      setShowShuffleOverlay(true);
+      setDataArray([...defaultData]);
+      setRefresh(!refresh);
+      setTimeout(() => {
+        setShowShuffleOverlay(false);
+      }, 200);
+    }
   }
 
   useEffect(() => {
     shuffleDeck();
-  }, [shuffleCount]);
+  }, [isShuffled]);
 
   return (
     <Animated.View
@@ -132,7 +144,7 @@ export default function CardCarousel({
       }}
     >
       <Animated.FlatList
-        data={data}
+        data={dataArray}
         horizontal
         renderItem={({ item, index }) => {
           return (
@@ -170,7 +182,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.75,
     shadowRadius: 15,
     shadowColor: "#000",
   },
