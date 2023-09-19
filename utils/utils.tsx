@@ -124,7 +124,7 @@ export const rayData = [
   {
     title: "Ray 14",
     description:
-      "Pearlescent red orange ray of dematerialization and re-materialization.",
+      "Pearlescent red orange ray of dematerialization  and re-materialization.",
   },
   {
     title: "Ray 15",
@@ -136,7 +136,7 @@ export const rayData = [
   },
   {
     title: "Ray 17",
-    description: "Pearlescent fuchisa ray of personal empowerment.",
+    description: "Pearlescent fuchsia ray of personal empowerment.",
   },
   {
     title: "Ray 18",
@@ -153,7 +153,7 @@ export const rayData = [
   },
   {
     title: "Ray 21",
-    description: "Opalescent chartruese ray of climate control.",
+    description: "Opalescent chartreuse ray of climate control.",
   },
   {
     title: "Ray 22",
@@ -233,7 +233,7 @@ export const rayData = [
   },
   {
     title: "Ray 41",
-    description: "Flourescent orange ray of goodwill.",
+    description: "Fluorescent orange ray of goodwill.",
   },
   {
     title: "Ray 42",
@@ -241,15 +241,15 @@ export const rayData = [
   },
   {
     title: "Ray 43",
-    description: "Flourescent yellow ray of temperance.",
+    description: "Fluorescent yellow ray of temperance.",
   },
   {
     title: "Ray 44",
-    description: "Flourescent green ray of tolerance.",
+    description: "Fluorescent green ray of tolerance.",
   },
   {
     title: "Ray 45",
-    description: "Flourescent white ray of harmony in family groups.",
+    description: "Fluorescent white ray of harmony in family groups.",
   },
   {
     title: "Ray 46",
@@ -261,11 +261,11 @@ export const rayData = [
   },
   {
     title: "Ray 48",
-    description: "Rainbow ray visionary consciousness in induviduals.",
+    description: "Rainbow ray visionary consciousness in individuals.",
   },
   {
     title: "Ray 49",
     description:
-      "Rainnbow ray of visionary consciousness in the collective of humanity.",
+      "Rainbow ray of visionary consciousness in the collective of humanity.",
   },
 ];
