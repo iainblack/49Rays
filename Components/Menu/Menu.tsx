@@ -14,10 +14,17 @@ import SuggestedPrayer from "./SuggestedPrayer";
 
 interface MenuProps {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setHomeState: React.Dispatch<React.SetStateAction<number>>;
   deviceType: string;
+  homeState: number;
 }
 
-export default function Menu({ deviceType, setShowMenu }: MenuProps) {
+export default function Menu({
+  deviceType,
+  setShowMenu,
+  setHomeState,
+  homeState,
+}: MenuProps) {
   const isFirstRender = React.useRef<boolean>(true);
   const [transitionOutHome, setTransitionOutHome] =
     React.useState<boolean>(true);
@@ -30,16 +37,6 @@ export default function Menu({ deviceType, setShowMenu }: MenuProps) {
       return;
     }
   }, []);
-
-  const onCloseClick = () => {
-    setTransitionOutHome(false);
-  };
-
-  useEffect(() => {
-    if (!transitionOutHome) {
-      setShowMenu(false);
-    }
-  }, [transitionOutHome]);
 
   return (
     <Animated.View
@@ -68,10 +65,12 @@ export default function Menu({ deviceType, setShowMenu }: MenuProps) {
         >
           {menuIndex === 0 && (
             <MenuHome
+              setHomeState={setHomeState}
               setMenuIndex={setMenuIndex}
               isFirstRender={isFirstRender}
               deviceType={deviceType}
-              onCloseClick={onCloseClick}
+              setShowMenu={setShowMenu}
+              homeState={homeState}
             />
           )}
           {menuIndex === 1 && (

@@ -18,8 +18,12 @@ export interface CardProps {
 }
 
 const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
+  const singleSpinValue = useSharedValue<number>(0);
+
+  const useSpinValue = spinValue ? spinValue : singleSpinValue;
+
   const rStyle = useAnimatedStyle(() => {
-    const spinVal = interpolate(spinValue.value, [0, 1], [0, 180]);
+    const spinVal = interpolate(useSpinValue.value, [0, 1], [0, 180]);
     return {
       transform: [
         {
@@ -30,7 +34,7 @@ const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
   }, []);
 
   const bStyle = useAnimatedStyle(() => {
-    const spinVal = interpolate(spinValue.value, [0, 1], [180, 360]);
+    const spinVal = interpolate(useSpinValue.value, [0, 1], [180, 360]);
     return {
       transform: [
         {
@@ -51,30 +55,37 @@ const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
         height: "100%",
       }}
     >
-      <View style={{ width: "100%", height: "100%" }}>
-        <Animated.View
-          style={[Styles.front, rStyle]}
-          entering={FadeIn.duration(1000)}
-        >
-          <Image
-            style={Styles.image}
-            source={frontImage}
-            transition={1000}
-            contentFit={"fill"}
-          />
-        </Animated.View>
-        <Animated.View
-          style={[Styles.back, bStyle]}
-          entering={FadeIn.duration(1000)}
-        >
-          <Image
-            style={Styles.image}
-            source={backImage}
-            contentFit={"fill"}
-            transition={1000}
-          />
-        </Animated.View>
-      </View>
+      <Pressable
+        onPress={() => {
+          !spinValue && (useSpinValue.value = useSpinValue.value ? 0 : 1);
+        }}
+      >
+        <View style={{ width: "100%", height: "100%" }}>
+          <Animated.View
+            style={[Styles.front, rStyle]}
+            entering={FadeIn.duration(1000)}
+          >
+            <Image
+              style={Styles.image}
+              source={frontImage}
+              transition={1000}
+              contentFit={"fill"}
+            />
+          </Animated.View>
+
+          <Animated.View
+            style={[Styles.back, bStyle]}
+            entering={FadeIn.duration(1000)}
+          >
+            <Image
+              style={Styles.image}
+              source={backImage}
+              contentFit={"fill"}
+              transition={1000}
+            />
+          </Animated.View>
+        </View>
+      </Pressable>
     </View>
   );
 };

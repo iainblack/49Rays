@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import {
   deviceTypeMap,
+  globalStyles,
   PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
   PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
   TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED,
@@ -13,7 +14,6 @@ import { getDeviceTypeAsync } from "expo-device";
 import { data as defaultData } from "../utils/images";
 
 interface CardCarouselProps {
-  scrollX: Animated.Value;
   spinValue: Animated.SharedValue<number>;
   flatListRef: React.RefObject<any>;
   isShuffled: boolean;
@@ -56,7 +56,7 @@ function CarouselItem({
           borderRadius: 16,
           marginHorizontal: SPACING,
         },
-        styles.shadow,
+        globalStyles.cardShadow,
       ]}
     >
       {!shuffling && (
@@ -177,14 +177,4 @@ export default function CardCarousel({
   );
 }
 
-const styles = StyleSheet.create({
-  shadow: {
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.75,
-    shadowRadius: 15,
-    shadowColor: "#000",
-  },
-});
+const styles = StyleSheet.create({});

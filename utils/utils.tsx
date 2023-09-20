@@ -55,6 +55,15 @@ export const globalStyles = StyleSheet.create({
     },
     shadowRadius: 5,
   },
+  cardShadow: {
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.9,
+    shadowRadius: 20,
+    shadowColor: "#000",
+  },
 });
 
 export const COLOR_VIOLET = "rgb(151,120,209)";

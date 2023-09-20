@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect } from "react";
-import { useRef } from "react";
-import { Animated, SafeAreaView, StyleSheet, View, Text } from "react-native";
+import React, { useEffect } from "react";
+import { SafeAreaView, StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
-import CardScreen from "../components/BrowseScreen";
-import Header from "../components/Header";
 import { getDeviceTypeAsync } from "expo-device";
 import { deviceTypeMap } from "../utils/utils";
 import AboutOverlay from "../components/AboutOverlay";
 import Menu from "../components/Menu/Menu";
 import { SplashScreen } from "expo-router";
+import Header from "../components/Header";
+import BrowseScreen from "../components/BrowseScreen";
 
 SplashScreen.preventAutoHideAsync();
 
-export interface HomeState {
-  showCards: boolean;
+export enum HomeTypes {
+  CARDS = 0,
+  BROWSE = 1,
 }
 
 export default function Home() {
@@ -22,8 +22,8 @@ export default function Home() {
     React.useState<boolean>(false);
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [deviceType, setDeviceType] = React.useState<string>("phone");
+  const [homeState, setHomeState] = React.useState<HomeTypes>(HomeTypes.CARDS);
 
-  const scrollX = useRef(new Animated.Value(0)).current;
   const blurHash = "LhJt0pD%-m%1},V_xFs:rEs;Vbe:";
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Home() {
             showAboutOverlay={showAboutOverlay}
             showMenu={showMenu}
           />
-          <CardScreen scrollX={scrollX} deviceType={deviceType} />
+          <BrowseScreen deviceType={deviceType} homeState={homeState} />
           {showAboutOverlay && (
             <>
               <AboutOverlay
@@ -91,7 +91,12 @@ export default function Home() {
           )}
           {showMenu && (
             <>
-              <Menu deviceType={deviceType} setShowMenu={setShowMenu} />
+              <Menu
+                deviceType={deviceType}
+                setShowMenu={setShowMenu}
+                setHomeState={setHomeState}
+                homeState={homeState}
+              />
               <View
                 style={[
                   StyleSheet.absoluteFillObject,

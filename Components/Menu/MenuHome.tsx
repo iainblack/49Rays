@@ -1,4 +1,3 @@
-import { deviceType } from "expo-device";
 import React from "react";
 import { IconNames, normalize } from "../../utils/utils";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -6,19 +5,24 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import Divider from "../Divider";
 import Animated, { SlideInLeft, SlideOutLeft } from "react-native-reanimated";
 import IconHeader from "../IconHeader";
+import { HomeTypes } from "../../app";
 
 interface MenuHomeProps {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
-  onCloseClick: () => void;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   deviceType: string;
   isFirstRender: React.MutableRefObject<boolean>;
+  setHomeState: React.Dispatch<React.SetStateAction<number>>;
+  homeState: number;
 }
 
 export default function MenuHome({
   isFirstRender,
   setMenuIndex,
   deviceType,
-  onCloseClick,
+  setShowMenu,
+  setHomeState,
+  homeState,
 }: MenuHomeProps) {
   return (
     <Animated.View
@@ -31,11 +35,16 @@ export default function MenuHome({
         deviceType={deviceType}
         onClose={() => {
           isFirstRender.current = true;
-          onCloseClick();
+          setShowMenu(false);
         }}
         iconName={IconNames.close}
       />
-      {/* <ViewSelection deviceType={deviceType} /> */}
+      <ViewSelection
+        deviceType={deviceType}
+        setHomeState={setHomeState}
+        homeState={homeState}
+        setShowMenu={setShowMenu}
+      />
       <Pressable
         onPress={() => {
           setMenuIndex(1);
@@ -127,7 +136,19 @@ export default function MenuHome({
   );
 }
 
-function ViewSelection(deviceType) {
+interface ViewSelectionProps {
+  deviceType: string;
+  setHomeState: React.Dispatch<React.SetStateAction<number>>;
+  homeState: number;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function ViewSelection({
+  deviceType,
+  setHomeState,
+  homeState,
+  setShowMenu,
+}: ViewSelectionProps) {
   return (
     <View>
       <View
@@ -140,9 +161,9 @@ function ViewSelection(deviceType) {
         ]}
       >
         <Text
-          style={[styles.titleText, { fontSize: normalize(24, deviceType) }]}
+          style={[styles.titleText, { fontSize: normalize(18, deviceType) }]}
         >
-          Select a View
+          Select View
         </Text>
       </View>
       <View
@@ -152,46 +173,43 @@ function ViewSelection(deviceType) {
           justifyContent: "space-around",
         }}
       >
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            setHomeState(0);
+            setShowMenu(false);
+          }}
+        >
           <View
             style={{
               alignItems: "center",
+              marginTop: 10,
             }}
           >
             <MaterialCommunityIcons
               name="cards-variant"
-              size={normalize(100, deviceType)}
+              size={normalize(70, deviceType)}
               color="white"
             />
-            <Text
-              style={[
-                styles.titleText,
-                { fontSize: normalize(18, deviceType), paddingTop: 10 },
-              ]}
-            >
-              Daily Inspiration
-            </Text>
           </View>
         </Pressable>
-        <Pressable>
+
+        <Pressable
+          onPress={() => {
+            setHomeState(1);
+            setShowMenu(false);
+          }}
+        >
           <View
             style={{
               alignItems: "center",
+              marginBottom: 20,
             }}
           >
             <MaterialCommunityIcons
-              name="view-carousel-outline"
-              size={normalize(100, deviceType)}
+              name="view-array-outline"
+              size={normalize(90, deviceType)}
               color="white"
             />
-            <Text
-              style={[
-                styles.titleText,
-                { fontSize: normalize(18, deviceType), paddingTop: 10 },
-              ]}
-            >
-              Browse Cards
-            </Text>
           </View>
         </Pressable>
       </View>

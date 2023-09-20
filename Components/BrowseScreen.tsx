@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { MutableRefObject, useEffect } from "react";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
-import { HomeState } from "../app";
 import { globalStyles, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
+import CardStack from "./CardStack";
+import { HomeTypes } from "../app";
 
-interface CardScreenProps {
-  setHomeState?: React.Dispatch<React.SetStateAction<HomeState>>;
-  scrollX?: any;
+interface BrowseScreenProps {
+  homeState: HomeTypes;
   deviceType: string;
 }
 
-export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
+export default function BrowseScreen({
+  homeState,
+  deviceType,
+}: BrowseScreenProps) {
   const [isShuffled, setIsShuffled] = React.useState<boolean>(false);
   const shuffleCount = React.useRef<number>(0);
   const spinValue = useSharedValue<number>(0);
@@ -42,16 +45,33 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
             },
           ]}
         >
-          Browse the Deck
+          {homeState === 1 ? "Browse the Deck" : "Daily Inspiration"}
         </Text>
+
+        {homeState === 0 && (
+          <Text
+            style={[
+              styles.subtitleText,
+              globalStyles.shadow,
+              {
+                fontSize: normalize(12, deviceType),
+                marginTop: 15,
+              },
+            ]}
+          >
+            {"Swipe left to see next card, tap to flip."}
+          </Text>
+        )}
       </View>
-      <CardCarousel
-        scrollX={scrollX}
-        spinValue={spinValue}
-        flatListRef={flatListRef}
-        shuffleCount={shuffleCount.current}
-        isShuffled={isShuffled}
-      />
+      {homeState === 1 && (
+        <CardCarousel
+          spinValue={spinValue}
+          flatListRef={flatListRef}
+          shuffleCount={shuffleCount.current}
+          isShuffled={isShuffled}
+        />
+      )}
+      {homeState === 0 && <CardStack deviceType={deviceType} />}
       <View
         style={{
           width: "100%",
@@ -62,61 +82,113 @@ export default function CardScreen({ scrollX, deviceType }: CardScreenProps) {
           marginVertical: Dimensions.get("window").height * 0.05,
         }}
       >
-        <Pressable
-          style={[globalStyles.shadow]}
-          onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
-        >
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <MaterialCommunityIcons
-              name="rotate-360"
+        {homeState === 1 && (
+          <BrowseButtons
+            deviceType={deviceType}
+            spinValue={spinValue}
+            shuffleCount={shuffleCount}
+            isShuffled={isShuffled}
+            setIsShuffled={setIsShuffled}
+          />
+        )}
+        {/* {homeState === 0 && <StackButtons deviceType={deviceType} />} */}
+      </View>
+    </View>
+  );
+}
+
+function BrowseButtons({
+  deviceType,
+  spinValue,
+  shuffleCount,
+  isShuffled,
+  setIsShuffled,
+}: {
+  deviceType: string;
+  spinValue: any;
+  shuffleCount: MutableRefObject<number>;
+  isShuffled: boolean;
+  setIsShuffled: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  return (
+    <>
+      <Pressable
+        style={[globalStyles.shadow]}
+        onPress={() => (spinValue.value = spinValue.value ? 0 : 1)}
+      >
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <MaterialCommunityIcons
+            name="rotate-360"
+            size={deviceType === "phone" ? 32 : 40}
+            color="white"
+          />
+          <Text
+            style={[
+              styles.buttonText,
+              globalStyles.shadow,
+              { fontSize: normalize(14, deviceType) },
+            ]}
+          >
+            {"Flip All"}
+          </Text>
+        </View>
+      </Pressable>
+      <Pressable
+        style={[globalStyles.shadow]}
+        onPress={() => {
+          shuffleCount.current += 1;
+          setIsShuffled(!isShuffled);
+        }}
+      >
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          {isShuffled ? (
+            <MaterialIcons
+              name="replay"
               size={deviceType === "phone" ? 32 : 40}
               color="white"
             />
-            <Text
-              style={[
-                styles.buttonText,
-                globalStyles.shadow,
-                { fontSize: normalize(14, deviceType) },
-              ]}
-            >
-              {"Flip All"}
-            </Text>
-          </View>
-        </Pressable>
-        <Pressable
-          style={[globalStyles.shadow]}
-          onPress={() => {
-            shuffleCount.current += 1;
-            setIsShuffled(!isShuffled);
-          }}
+          ) : (
+            <MaterialCommunityIcons
+              name="shuffle-variant"
+              size={deviceType === "phone" ? 32 : 40}
+              color="white"
+            />
+          )}
+          <Text
+            style={[
+              styles.buttonText,
+              globalStyles.shadow,
+              { fontSize: normalize(14, deviceType) },
+            ]}
+          >
+            {isShuffled ? "Reset" : "Shuffle"}
+          </Text>
+        </View>
+      </Pressable>
+    </>
+  );
+}
+
+function StackButtons({ deviceType }: { deviceType: string }) {
+  return (
+    <Pressable style={[globalStyles.shadow]} onPress={() => {}}>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <MaterialCommunityIcons
+          name="rotate-360"
+          size={deviceType === "phone" ? 32 : 40}
+          color="white"
+        />
+        <Text
+          style={[
+            styles.buttonText,
+            globalStyles.shadow,
+            { fontSize: normalize(14, deviceType) },
+          ]}
         >
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            {isShuffled ? (
-              <MaterialIcons
-                name="replay"
-                size={deviceType === "phone" ? 32 : 40}
-                color="white"
-              />
-            ) : (
-              <MaterialCommunityIcons
-                name="shuffle-variant"
-                size={deviceType === "phone" ? 32 : 40}
-                color="white"
-              />
-            )}
-            <Text
-              style={[
-                styles.buttonText,
-                globalStyles.shadow,
-                { fontSize: normalize(14, deviceType) },
-              ]}
-            >
-              {isShuffled ? "Reset" : "Shuffle"}
-            </Text>
-          </View>
-        </Pressable>
+          {"Flip All"}
+        </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -125,6 +197,9 @@ const styles = StyleSheet.create({
     color: "white",
   },
   titleText: {
+    color: "white",
+  },
+  subtitleText: {
     color: "white",
   },
 });
