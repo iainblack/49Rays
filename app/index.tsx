@@ -27,6 +27,7 @@ export default function Home() {
   const [homeState, setHomeState] = React.useState<HomeTypes>(HomeTypes.CARDS);
 
   const frontCardId = React.useRef<number>(0);
+  const showBackOnFullScreen = React.useRef<boolean>(false);
   const blurHash = "LhJt0pD%-m%1},V_xFs:rEs;Vbe:";
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function Home() {
                 showAboutOverlay={showAboutOverlay}
                 showMenu={showMenu}
               />
-              <BrowseScreen deviceType={deviceType} homeState={homeState} setShowFullScreen={setShowFullScreen} frontCardId={frontCardId} />
+              <BrowseScreen deviceType={deviceType} homeState={homeState} setShowFullScreen={setShowFullScreen} frontCardId={frontCardId} showBack={showBackOnFullScreen} />
             </>}
           {showAboutOverlay && (
             <>
@@ -126,6 +127,7 @@ export default function Home() {
           setShowFullScreenView={setShowFullScreen}
           deviceType={deviceType}
           cardId={frontCardId.current}
+          showBack={showBackOnFullScreen.current}
         />
       )}
     </View>

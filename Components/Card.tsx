@@ -1,5 +1,5 @@
 import { View, StyleSheet, Pressable, ImageSourcePropType } from "react-native";
-import React from "react";
+import React, { MutableRefObject } from "react";
 import Animated, {
   FadeIn,
   FadeOut,
@@ -15,10 +15,12 @@ export interface CardProps {
   backImage?: ImageSourcePropType;
   id: number;
   spinValue?: Animated.SharedValue<number>;
+  setShowBack?: (show: boolean) => void;
+  showBack?: boolean;
 }
 
-const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
-  const singleSpinValue = useSharedValue<number>(0);
+const Card = ({ spinValue, frontImage, backImage, showBack, setShowBack }: CardProps) => {
+  const singleSpinValue = useSharedValue<number>(showBack ? 1 : 0);
 
   const useSpinValue = spinValue ? spinValue : singleSpinValue;
 
@@ -57,7 +59,14 @@ const Card = ({ spinValue, frontImage, backImage, id }: CardProps) => {
     >
       <Pressable
         onPress={() => {
-          !spinValue && (useSpinValue.value = useSpinValue.value ? 0 : 1);
+          if (spinValue) { return; }
+          if (useSpinValue.value === 0) {
+            setShowBack ? setShowBack(true) : null;
+            useSpinValue.value = 1;
+          } else {
+            setShowBack ? setShowBack(false) : null;
+            useSpinValue.value = 0;
+          }
         }}
       >
         <View style={{ width: "100%", height: "100%" }}>

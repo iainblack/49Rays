@@ -10,9 +10,10 @@ interface FullScreenViewProps {
     cardId: number;
     setShowFullScreenView: React.Dispatch<React.SetStateAction<boolean>>;
     deviceType: string;
+    showBack: boolean;
 }
 
-export default function FullScreenView({ cardId, setShowFullScreenView, deviceType }: FullScreenViewProps) {
+export default function FullScreenView({ cardId, setShowFullScreenView, deviceType, showBack }: FullScreenViewProps) {
     const { height, width } = useWindowDimensions();
     const card = data.filter((card) => card.id === cardId)[0];
 
@@ -43,7 +44,7 @@ export default function FullScreenView({ cardId, setShowFullScreenView, deviceTy
                             alignItems: 'center',
                         }]}
                     >
-                        <Card frontImage={card.frontImage} backImage={card.backImage} id={card.id} />
+                        <Card frontImage={card.frontImage} backImage={card.backImage} id={card.id} showBack={showBack} />
                     </View >
                     <View style={{
                         width: width,

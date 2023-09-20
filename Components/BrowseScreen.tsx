@@ -12,6 +12,7 @@ interface BrowseScreenProps {
   deviceType: string;
   setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>>;
   frontCardId: MutableRefObject<number>;
+  showBack: MutableRefObject<boolean>;
 }
 
 export default function BrowseScreen({
@@ -19,6 +20,7 @@ export default function BrowseScreen({
   deviceType,
   setShowFullScreen,
   frontCardId,
+  showBack,
 }: BrowseScreenProps) {
   const [isShuffled, setIsShuffled] = React.useState<boolean>(false);
   const shuffleCount = React.useRef<number>(0);
@@ -75,7 +77,7 @@ export default function BrowseScreen({
           isShuffled={isShuffled}
         />
       )}
-      {homeState === 0 && <CardStack deviceType={deviceType} frontCardId={frontCardId} />}
+      {homeState === 0 && <CardStack deviceType={deviceType} frontCardId={frontCardId} showBack={showBack} />}
       <View
         style={{
           width: "100%",

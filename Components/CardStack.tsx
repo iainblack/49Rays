@@ -14,11 +14,13 @@ import Card from "./Card";
 interface CardStackProps {
   deviceType: string;
   frontCardId: MutableRefObject<number>;
+  showBack: MutableRefObject<boolean>;
 }
 
-export default function CardStack({ deviceType, frontCardId }: CardStackProps) {
+export default function CardStack({ deviceType, frontCardId, showBack }: CardStackProps) {
   const viewCount = 10;
   const { width, height } = useWindowDimensions();
+
 
   const cardHeight =
     deviceType === "phone"
@@ -30,6 +32,10 @@ export default function CardStack({ deviceType, frontCardId }: CardStackProps) {
       ? PHONE_VIEW_SCREEN_WIDTH_EXPANDED
       : TABLET_VIEW_SCREEN_WIDTH_EXPANDED;
 
+  const setShowBack = (show: boolean) => {
+    showBack.current = show;
+  };
+
   return (
     <Carousel
       style={{
@@ -38,6 +44,7 @@ export default function CardStack({ deviceType, frontCardId }: CardStackProps) {
         justifyContent: "center",
         alignItems: "center",
       }}
+      defaultIndex={frontCardId.current}
       width={cardWidth}
       height={cardHeight}
       pagingEnabled
@@ -59,6 +66,7 @@ export default function CardStack({ deviceType, frontCardId }: CardStackProps) {
             frontImage={item.frontImage}
             backImage={item.backImage}
             id={item.id}
+            setShowBack={setShowBack}
           />
         </View>
       )}
