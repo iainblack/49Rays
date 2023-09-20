@@ -2,7 +2,6 @@ import React, { useCallback, useEffect } from "react";
 import { useRef } from "react";
 import { Animated, SafeAreaView, StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CardScreen from "../components/BrowseScreen";
 import Header from "../components/Header";
 import { getDeviceTypeAsync } from "expo-device";
@@ -18,6 +17,7 @@ export interface HomeState {
 }
 
 export default function Home() {
+  const [appIsReady, setAppIsReady] = React.useState<boolean>(false);
   const [showAboutOverlay, setShowAboutOverlay] =
     React.useState<boolean>(false);
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -41,8 +41,9 @@ export default function Home() {
   }, []);
 
   setTimeout(() => {
+    setAppIsReady(true);
     SplashScreen.hideAsync();
-  }, 500);
+  }, 2000);
 
   return (
     <View
@@ -61,47 +62,49 @@ export default function Home() {
         placeholder={blurHash}
         contentFit={"cover"}
       />
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header
-          deviceType={deviceType}
-          setShowAboutOverlay={setShowAboutOverlay}
-          setShowMenu={setShowMenu}
-          showAboutOverlay={showAboutOverlay}
-          showMenu={showMenu}
-        />
-        <CardScreen scrollX={scrollX} deviceType={deviceType} />
-        {showAboutOverlay && (
-          <>
-            <AboutOverlay
-              setShowAboutOverlay={setShowAboutOverlay}
-              deviceType={deviceType}
-            />
-            <View
-              style={[
-                StyleSheet.absoluteFillObject,
-                {
-                  backgroundColor: "rgba(0,0,0,0.8)",
-                  zIndex: 20,
-                },
-              ]}
-            />
-          </>
-        )}
-        {showMenu && (
-          <>
-            <Menu deviceType={deviceType} setShowMenu={setShowMenu} />
-            <View
-              style={[
-                StyleSheet.absoluteFillObject,
-                {
-                  backgroundColor: "rgba(0,0,0,0.8)",
-                  zIndex: 20,
-                },
-              ]}
-            />
-          </>
-        )}
-      </SafeAreaView>
+      {appIsReady && (
+        <SafeAreaView style={{ flex: 1 }}>
+          <Header
+            deviceType={deviceType}
+            setShowAboutOverlay={setShowAboutOverlay}
+            setShowMenu={setShowMenu}
+            showAboutOverlay={showAboutOverlay}
+            showMenu={showMenu}
+          />
+          <CardScreen scrollX={scrollX} deviceType={deviceType} />
+          {showAboutOverlay && (
+            <>
+              <AboutOverlay
+                setShowAboutOverlay={setShowAboutOverlay}
+                deviceType={deviceType}
+              />
+              <View
+                style={[
+                  StyleSheet.absoluteFillObject,
+                  {
+                    backgroundColor: "rgba(0,0,0,0.8)",
+                    zIndex: 20,
+                  },
+                ]}
+              />
+            </>
+          )}
+          {showMenu && (
+            <>
+              <Menu deviceType={deviceType} setShowMenu={setShowMenu} />
+              <View
+                style={[
+                  StyleSheet.absoluteFillObject,
+                  {
+                    backgroundColor: "rgba(0,0,0,0.8)",
+                    zIndex: 20,
+                  },
+                ]}
+              />
+            </>
+          )}
+        </SafeAreaView>
+      )}
     </View>
   );
 }

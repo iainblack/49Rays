@@ -27,7 +27,6 @@ export default function MenuHome({
         isFirstRender && isFirstRender.current ? undefined : SlideInLeft
       }
     >
-      {/* <ViewSelection deviceType={deviceType} /> */}
       <IconHeader
         deviceType={deviceType}
         onClose={() => {
@@ -36,6 +35,7 @@ export default function MenuHome({
         }}
         iconName={IconNames.close}
       />
+      {/* <ViewSelection deviceType={deviceType} /> */}
       <Pressable
         onPress={() => {
           setMenuIndex(1);

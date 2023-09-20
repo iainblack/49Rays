@@ -160,6 +160,7 @@ export default function CardCarousel({
             />
           );
         }}
+        showsHorizontalScrollIndicator={false}
         initialNumToRender={5}
         keyExtractor={(item) => String(item.id)}
         snapToAlignment={"center"}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
-import Animated, { useSharedValue } from "react-native-reanimated";
+import { useSharedValue } from "react-native-reanimated";
 import { HomeState } from "../app";
 import { globalStyles, normalize } from "../utils/utils";
 import CardCarousel from "./CardCarousel";
