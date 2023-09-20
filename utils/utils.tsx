@@ -26,24 +26,34 @@ export function normalize(size, deviceType) {
 }
 
 export const PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED =
-  Dimensions.get("window").height * 0.5;
+  Dimensions.get("window").height * 0.52;
 export const PHONE_VIEW_SCREEN_WIDTH_COLLAPSED =
-  Dimensions.get("window").width * 0.75;
+  Dimensions.get("window").width * 0.77;
 
 export const TABLET_VIEW_SCREEN_HEIGHT_COLLAPSED =
-  Dimensions.get("window").height * 0.4;
+  Dimensions.get("window").height * 0.52;
 export const TABLET_VIEW_SCREEN_WIDTH_COLLAPSED =
-  Dimensions.get("window").width * 0.4;
+  Dimensions.get("window").width * 0.52;
 
-// export const PHONE_VIEW_SCREEN_HEIGHT_EXPANDED =
-//   Dimensions.get("window").height * 0.7;
-// export const PHONE_VIEW_SCREEN_WIDTH_EXPANDED =
-//   Dimensions.get("window").width * 0.95;
+export const PHONE_VIEW_SCREEN_HEIGHT_EXPANDED =
+  Dimensions.get("window").height * 0.52;
+export const PHONE_VIEW_SCREEN_WIDTH_EXPANDED =
+  Dimensions.get("window").width * 0.77;
 
-// export const TABLET_VIEW_SCREEN_HEIGHT_EXPANDED =
-//   Dimensions.get("window").height * 0.7;
-// export const TABLET_VIEW_SCREEN_WIDTH_EXPANDED =
-//   Dimensions.get("window").width * 0.7;
+export const TABLET_VIEW_SCREEN_HEIGHT_EXPANDED =
+  Dimensions.get("window").height * 0.52;
+export const TABLET_VIEW_SCREEN_WIDTH_EXPANDED =
+  Dimensions.get("window").width * 0.52;
+
+export const PHONE_VIEW_SCREEN_HEIGHT_FULL =
+  Dimensions.get("window").height * 0.7;
+export const PHONE_VIEW_SCREEN_WIDTH_FULL =
+  Dimensions.get("window").width * 0.97;
+
+export const TABLET_VIEW_SCREEN_HEIGHT_FULL =
+  Dimensions.get("window").height * 0.8;
+export const TABLET_VIEW_SCREEN_WIDTH_FULL =
+  Dimensions.get("window").width * 0.8;
 
 export const globalStyles = StyleSheet.create({
   shadow: {

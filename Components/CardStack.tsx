@@ -1,34 +1,34 @@
-import React from "react";
-import { useSharedValue } from "react-native-reanimated";
+import React, { MutableRefObject } from "react";
 import { data } from "../utils/images";
 import Carousel from "react-native-reanimated-carousel";
-import { Dimensions, Pressable, Text, View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
 import {
-  PHONE_VIEW_SCREEN_WIDTH_COLLAPSED,
-  PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED,
   globalStyles,
-  TABLET_VIEW_SCREEN_WIDTH_COLLAPSED,
+  PHONE_VIEW_SCREEN_WIDTH_EXPANDED,
+  TABLET_VIEW_SCREEN_WIDTH_EXPANDED,
+  PHONE_VIEW_SCREEN_HEIGHT_EXPANDED,
+  TABLET_VIEW_SCREEN_HEIGHT_EXPANDED,
 } from "../utils/utils";
 import Card from "./Card";
 
 interface CardStackProps {
   deviceType: string;
+  frontCardId: MutableRefObject<number>;
 }
 
-export default function CardStack({ deviceType }: CardStackProps) {
-  const spinValue = useSharedValue<number>(0);
+export default function CardStack({ deviceType, frontCardId }: CardStackProps) {
   const viewCount = 10;
-  const { width, height } = Dimensions.get("window");
+  const { width, height } = useWindowDimensions();
 
   const cardHeight =
     deviceType === "phone"
-      ? PHONE_VIEW_SCREEN_HEIGHT_COLLAPSED
-      : TABLET_VIEW_SCREEN_WIDTH_COLLAPSED;
+      ? PHONE_VIEW_SCREEN_HEIGHT_EXPANDED
+      : TABLET_VIEW_SCREEN_HEIGHT_EXPANDED;
 
   const cardWidth =
     deviceType === "phone"
-      ? PHONE_VIEW_SCREEN_WIDTH_COLLAPSED
-      : TABLET_VIEW_SCREEN_WIDTH_COLLAPSED;
+      ? PHONE_VIEW_SCREEN_WIDTH_EXPANDED
+      : TABLET_VIEW_SCREEN_WIDTH_EXPANDED;
 
   return (
     <Carousel
@@ -45,6 +45,9 @@ export default function CardStack({ deviceType }: CardStackProps) {
       mode={"horizontal-stack"}
       data={data}
       windowSize={viewCount}
+      onSnapToItem={(index) => {
+        frontCardId.current = index;
+      }}
       modeConfig={{
         snapDirection: "left",
         stackInterval: 14,

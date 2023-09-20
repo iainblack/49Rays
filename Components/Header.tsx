@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, View, Text, Pressable } from "react-native";
+import { Dimensions, View, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 

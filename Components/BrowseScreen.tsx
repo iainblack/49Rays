@@ -10,11 +10,15 @@ import { HomeTypes } from "../app";
 interface BrowseScreenProps {
   homeState: HomeTypes;
   deviceType: string;
+  setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>>;
+  frontCardId: MutableRefObject<number>;
 }
 
 export default function BrowseScreen({
   homeState,
   deviceType,
+  setShowFullScreen,
+  frontCardId,
 }: BrowseScreenProps) {
   const [isShuffled, setIsShuffled] = React.useState<boolean>(false);
   const shuffleCount = React.useRef<number>(0);
@@ -55,11 +59,11 @@ export default function BrowseScreen({
               globalStyles.shadow,
               {
                 fontSize: normalize(12, deviceType),
-                marginTop: 15,
+                marginTop: 10,
               },
             ]}
           >
-            {"Swipe left to see next card, tap to flip."}
+            {"Swipe to move through cards, tap to flip."}
           </Text>
         )}
       </View>
@@ -71,7 +75,7 @@ export default function BrowseScreen({
           isShuffled={isShuffled}
         />
       )}
-      {homeState === 0 && <CardStack deviceType={deviceType} />}
+      {homeState === 0 && <CardStack deviceType={deviceType} frontCardId={frontCardId} />}
       <View
         style={{
           width: "100%",
@@ -79,7 +83,7 @@ export default function BrowseScreen({
           justifyContent: "space-around",
           display: "flex",
           flexDirection: "row",
-          marginVertical: Dimensions.get("window").height * 0.05,
+          height: Dimensions.get('window').height * 0.1,
         }}
       >
         {homeState === 1 && (
@@ -91,7 +95,7 @@ export default function BrowseScreen({
             setIsShuffled={setIsShuffled}
           />
         )}
-        {/* {homeState === 0 && <StackButtons deviceType={deviceType} />} */}
+        {homeState === 0 && <StackButtons deviceType={deviceType} setShowFullScreen={setShowFullScreen} />}
       </View>
     </View>
   );
@@ -126,7 +130,7 @@ function BrowseButtons({
             style={[
               styles.buttonText,
               globalStyles.shadow,
-              { fontSize: normalize(14, deviceType) },
+              { fontSize: normalize(14, deviceType), marginTop: 5 },
             ]}
           >
             {"Flip All"}
@@ -158,7 +162,7 @@ function BrowseButtons({
             style={[
               styles.buttonText,
               globalStyles.shadow,
-              { fontSize: normalize(14, deviceType) },
+              { fontSize: normalize(14, deviceType), marginTop: 5 },
             ]}
           >
             {isShuffled ? "Reset" : "Shuffle"}
@@ -169,23 +173,23 @@ function BrowseButtons({
   );
 }
 
-function StackButtons({ deviceType }: { deviceType: string }) {
+function StackButtons({ deviceType, setShowFullScreen }: { deviceType: string, setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>> }) {
   return (
-    <Pressable style={[globalStyles.shadow]} onPress={() => {}}>
+    <Pressable style={[globalStyles.shadow]} onPress={() => { setShowFullScreen(true) }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <MaterialCommunityIcons
-          name="rotate-360"
-          size={deviceType === "phone" ? 32 : 40}
+          name="fullscreen"
+          size={deviceType === "phone" ? 36 : 44}
           color="white"
         />
         <Text
           style={[
             styles.buttonText,
             globalStyles.shadow,
-            { fontSize: normalize(14, deviceType) },
+            { fontSize: normalize(14, deviceType), marginTop: 5 },
           ]}
         >
-          {"Flip All"}
+          {"View full screen"}
         </Text>
       </View>
     </Pressable>

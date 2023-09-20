@@ -30,22 +30,22 @@ export default function SuggestedPrayer({
               styles.text,
               {
                 fontSize: normalize(18, deviceType),
-                marginBottom: height * 0.05,
+                marginBottom: height * 0.02,
               },
             ]}
           >
             Suggested Prayer for invoking the 49 Rays of God
           </Text>
           <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
-            "I ask that all my energy work that is done in and through my body
+            "I ask that all all energy work that is done in and through my body
             be alignment with the divine plan of the creator for planet Earth,
-            all species of life on Earth an beyond. Through the power vested inn
+            all species of life on Earth and beyond. Through the power vested in
             me by the Cosmic Christ Consciousness, I deliberately call forth the
             ~~Ray to calm and transmute this situation. So be it."
           </Text>
         </View>
         <Divider />
-        <View style={{ marginTop: height * 0.05, alignItems: "center" }}>
+        <View style={{ marginTop: height * 0.02, alignItems: "center" }}>
           <Text
             style={[
               styles.text,
