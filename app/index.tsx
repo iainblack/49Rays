@@ -82,7 +82,7 @@ export default function Home() {
                 showAboutOverlay={showAboutOverlay}
                 showMenu={showMenu}
               />
-              <BrowseScreen deviceType={deviceType} homeState={homeState} setShowFullScreen={setShowFullScreen} frontCardId={frontCardId} showBack={showBackOnFullScreen} />
+              <BrowseScreen deviceType={deviceType} homeState={homeState} setShowFullScreen={setShowFullScreen} frontCardId={frontCardId} showBack={showBackOnFullScreen} setHomeState={setHomeState} />
             </>}
           {showAboutOverlay && (
             <>

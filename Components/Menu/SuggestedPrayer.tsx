@@ -37,8 +37,8 @@ export default function SuggestedPrayer({
             Suggested Prayer for invoking the 49 Rays of God
           </Text>
           <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
-            "I ask that all all energy work that is done in and through my body
-            be alignment with the divine plan of the creator for planet Earth,
+            "I ask that all energy work that is done in and through my body
+            be in alignment with the divine plan of the creator for planet Earth,
             all species of life on Earth and beyond. Through the power vested in
             me by the Cosmic Christ Consciousness, I deliberately call forth the
             ~~Ray to calm and transmute this situation. So be it."

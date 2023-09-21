@@ -27,7 +27,7 @@ export default function IconHeader({
           justifyContent: alignLeft ? "flex-start" : "flex-end",
           display: "flex",
           flexDirection: "row",
-          marginBottom: 30,
+          marginBottom: 15,
         },
       ]}
     >

@@ -156,7 +156,6 @@ function ViewSelection({
           {
             justifyContent: "center",
             alignItems: "center",
-            paddingHorizontal: 10,
           },
         ]}
       >
@@ -171,6 +170,7 @@ function ViewSelection({
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-around",
+          alignItems: "center",
         }}
       >
         <Pressable
@@ -182,17 +182,23 @@ function ViewSelection({
           <View
             style={{
               alignItems: "center",
-              marginTop: 10,
             }}
           >
-            <MaterialCommunityIcons
-              name="cards-variant"
-              size={normalize(70, deviceType)}
-              color="white"
-            />
+            <View style={{
+              height: normalize(80, deviceType),
+              width: normalize(80, deviceType),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <MaterialCommunityIcons
+                name="cards-outline"
+                size={normalize(70, deviceType)}
+                color="white"
+              />
+            </View>
+            <Text style={[styles.text, { fontSize: normalize(16, deviceType) }]}>Daily Inspiration</Text>
           </View>
         </Pressable>
-
         <Pressable
           onPress={() => {
             setHomeState(1);
@@ -202,14 +208,18 @@ function ViewSelection({
           <View
             style={{
               alignItems: "center",
-              marginBottom: 20,
             }}
           >
             <MaterialCommunityIcons
               name="view-array-outline"
               size={normalize(90, deviceType)}
               color="white"
+              style={{
+                height: normalize(80, deviceType),
+                alignItems: 'center',
+              }}
             />
+            <Text style={[styles.text, { fontSize: normalize(16, deviceType) }]}>Browse Cards</Text>
           </View>
         </Pressable>
       </View>

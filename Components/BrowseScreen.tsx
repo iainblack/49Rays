@@ -9,6 +9,7 @@ import { HomeTypes } from "../app";
 
 interface BrowseScreenProps {
   homeState: HomeTypes;
+  setHomeState: React.Dispatch<React.SetStateAction<HomeTypes>>;
   deviceType: string;
   setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>>;
   frontCardId: MutableRefObject<number>;
@@ -17,6 +18,7 @@ interface BrowseScreenProps {
 
 export default function BrowseScreen({
   homeState,
+  setHomeState,
   deviceType,
   setShowFullScreen,
   frontCardId,
@@ -37,8 +39,9 @@ export default function BrowseScreen({
     >
       <View
         style={{
-          paddingTop: Dimensions.get("window").height * 0.1,
+          paddingTop: Dimensions.get("window").height * 0.05,
           alignItems: "center",
+          justifyContent: 'flex-start',
           width: "100%",
         }}
       >
@@ -60,7 +63,7 @@ export default function BrowseScreen({
               styles.subtitleText,
               globalStyles.shadow,
               {
-                fontSize: normalize(12, deviceType),
+                fontSize: normalize(14, deviceType),
                 marginTop: 10,
               },
             ]}
@@ -97,7 +100,7 @@ export default function BrowseScreen({
             setIsShuffled={setIsShuffled}
           />
         )}
-        {homeState === 0 && <StackButtons deviceType={deviceType} setShowFullScreen={setShowFullScreen} />}
+        {homeState === 0 && <StackButtons deviceType={deviceType} setShowFullScreen={setShowFullScreen} setHomeState={setHomeState} />}
       </View>
     </View>
   );
@@ -175,15 +178,14 @@ function BrowseButtons({
   );
 }
 
-function StackButtons({ deviceType, setShowFullScreen }: { deviceType: string, setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>> }) {
+function StackButtons({ deviceType, setShowFullScreen, setHomeState }: { deviceType: string, setShowFullScreen: React.Dispatch<React.SetStateAction<boolean>>, setHomeState: React.Dispatch<React.SetStateAction<HomeTypes>> }) {
   return (
-    <Pressable style={[globalStyles.shadow]} onPress={() => { setShowFullScreen(true) }}>
+    <><Pressable style={[globalStyles.shadow]} onPress={() => { setHomeState(1) }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <MaterialCommunityIcons
-          name="fullscreen"
+          name="view-array-outline"
           size={deviceType === "phone" ? 36 : 44}
-          color="white"
-        />
+          color="white" />
         <Text
           style={[
             styles.buttonText,
@@ -191,10 +193,26 @@ function StackButtons({ deviceType, setShowFullScreen }: { deviceType: string, s
             { fontSize: normalize(14, deviceType), marginTop: 5 },
           ]}
         >
-          {"View full screen"}
+          {"Browse"}
         </Text>
       </View>
-    </Pressable>
+    </Pressable><Pressable style={[globalStyles.shadow]} onPress={() => { setShowFullScreen(true); }}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <MaterialCommunityIcons
+            name="fullscreen"
+            size={deviceType === "phone" ? 36 : 44}
+            color="white" />
+          <Text
+            style={[
+              styles.buttonText,
+              globalStyles.shadow,
+              { fontSize: normalize(14, deviceType), marginTop: 5 },
+            ]}
+          >
+            {"Full screen"}
+          </Text>
+        </View>
+      </Pressable></>
   );
 }
 
