@@ -2,6 +2,7 @@ import React from "react";
 import { Dimensions, View, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { globalStyles } from "../utils/utils";
 
 interface HeaderProps {
   deviceType: string;
@@ -38,6 +39,7 @@ export default function Header({
         }}
       >
         <MaterialIcons
+          style={globalStyles.shadow}
           name="menu"
           size={deviceType === "phone" ? 28 : 32}
           color="white"
@@ -49,6 +51,7 @@ export default function Header({
         }}
       >
         <FontAwesome5
+          style={globalStyles.shadow}
           name="question-circle"
           size={deviceType === "phone" ? 28 : 32}
           color="white"

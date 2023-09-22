@@ -127,6 +127,7 @@ function BrowseButtons({
       >
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <MaterialCommunityIcons
+            style={globalStyles.shadow}
             name="rotate-360"
             size={deviceType === "phone" ? 32 : 40}
             color="white"
@@ -152,12 +153,14 @@ function BrowseButtons({
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           {isShuffled ? (
             <MaterialIcons
+              style={globalStyles.shadow}
               name="replay"
               size={deviceType === "phone" ? 32 : 40}
               color="white"
             />
           ) : (
             <MaterialCommunityIcons
+              style={globalStyles.shadow}
               name="shuffle-variant"
               size={deviceType === "phone" ? 32 : 40}
               color="white"
@@ -183,6 +186,7 @@ function StackButtons({ deviceType, setShowFullScreen, setHomeState }: { deviceT
     <><Pressable style={[globalStyles.shadow]} onPress={() => { setHomeState(1) }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <MaterialCommunityIcons
+          style={globalStyles.shadow}
           name="view-array-outline"
           size={deviceType === "phone" ? 36 : 44}
           color="white" />
@@ -199,6 +203,7 @@ function StackButtons({ deviceType, setShowFullScreen, setHomeState }: { deviceT
     </Pressable><Pressable style={[globalStyles.shadow]} onPress={() => { setShowFullScreen(true); }}>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <MaterialCommunityIcons
+            style={globalStyles.shadow}
             name="fullscreen"
             size={deviceType === "phone" ? 36 : 44}
             color="white" />

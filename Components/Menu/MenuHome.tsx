@@ -187,7 +187,7 @@ function ViewSelection({
             <View style={{
               height: normalize(80, deviceType),
               width: normalize(80, deviceType),
-              justifyContent: 'center',
+              justifyContent: 'flex-end',
               alignItems: 'center',
             }}>
               <MaterialCommunityIcons

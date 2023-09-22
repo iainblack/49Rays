@@ -59,6 +59,7 @@ export default function FullScreenView({ cardId, setShowFullScreenView, deviceTy
                         >
                             <View style={{ justifyContent: "center", alignItems: "center", }}>
                                 <MaterialCommunityIcons
+                                    style={globalStyles.shadow}
                                     name="fullscreen-exit"
                                     size={deviceType === "phone" ? 32 : 40}
                                     color="white"

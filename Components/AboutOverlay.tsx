@@ -77,7 +77,7 @@ export default function AboutOverlay({
             <Text
               style={[styles.text, { fontSize: normalize(14, deviceType) }]}
             >
-              More information included in the book “The 49 Rays of God: Their
+              More information is included in the book “The 49 Rays of God: Their
               Meanings and Uses” by bj King
             </Text>
             <View
