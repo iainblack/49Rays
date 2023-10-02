@@ -11,6 +11,7 @@ import MenuHome from "./MenuHome";
 import AuthorInfo from "./AuthorInfo";
 import CardIndex from "./CardIndex";
 import SuggestedPrayer from "./SuggestedPrayer";
+import AppInfo from "./AppInfo";
 
 interface MenuProps {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,7 +48,7 @@ export default function Menu({
         {
           position: "absolute",
           width: width,
-          height: height * 0.75,
+          height: height * 0.9,
           left: 0,
           bottom: 0,
           zIndex: 1000,
@@ -84,6 +85,9 @@ export default function Menu({
               setMenuIndex={setMenuIndex}
               deviceType={deviceType}
             />
+          )}
+          {menuIndex === 4 && (
+            <AppInfo setMenuIndex={setMenuIndex} deviceType={deviceType} />
           )}
         </View>
       </SafeAreaView>

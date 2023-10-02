@@ -22,12 +22,12 @@ export default function AuthorInfo({
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <View style={{ padding: 15 }}>
+      <View>
         <View style={{ marginBottom: 30 }}>
           <Text
             style={[
-              styles.text,
-              { fontSize: normalize(18, deviceType), marginBottom: 20 },
+              styles.headerText,
+              { fontSize: normalize(18, deviceType) },
             ]}
           >
             bj King
@@ -40,17 +40,16 @@ export default function AuthorInfo({
         <View style={{ marginTop: 30 }}>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               {
                 fontSize: normalize(18, deviceType),
-                marginBottom: 20,
               },
             ]}
           >
             Artwork Credit
           </Text>
-          <Text style={[styles.text, { fontSize: normalize(12, deviceType) }]}>
-            Card-deck design by Shelagh Schopen
+          <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
+            Photography and card design by Shelagh Schopen.
           </Text>
         </View>
       </View>
@@ -59,7 +58,14 @@ export default function AuthorInfo({
 }
 
 const styles = StyleSheet.create({
+  headerText: {
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
   text: {
     color: "white",
+    fontWeight: '300',
+    textAlign: 'left'
   },
 });

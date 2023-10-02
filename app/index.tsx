@@ -46,7 +46,6 @@ export default function Home() {
 
   useEffect(() => {
     frontCardId.current = 0;
-    console.log('reset frontCardId');
   }, [homeState]);
 
   setTimeout(() => {
@@ -86,37 +85,37 @@ export default function Home() {
             </>}
           {showAboutOverlay && (
             <>
-              <AboutOverlay
-                setShowAboutOverlay={setShowAboutOverlay}
-                deviceType={deviceType}
-              />
               <View
                 style={[
                   StyleSheet.absoluteFillObject,
                   {
-                    backgroundColor: "rgba(0,0,0,0.8)",
-                    zIndex: 20,
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                    zIndex: 10,
                   },
                 ]}
+              />
+              <AboutOverlay
+                setShowAboutOverlay={setShowAboutOverlay}
+                deviceType={deviceType}
               />
             </>
           )}
           {showMenu && (
             <>
+              <View
+                style={[
+                  StyleSheet.absoluteFillObject,
+                  {
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                    zIndex: 10,
+                  },
+                ]}
+              />
               <Menu
                 deviceType={deviceType}
                 setShowMenu={setShowMenu}
                 setHomeState={setHomeState}
                 homeState={homeState}
-              />
-              <View
-                style={[
-                  StyleSheet.absoluteFillObject,
-                  {
-                    backgroundColor: "rgba(0,0,0,0.8)",
-                    zIndex: 20,
-                  },
-                ]}
               />
             </>
           )}

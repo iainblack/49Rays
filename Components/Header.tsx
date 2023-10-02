@@ -22,7 +22,7 @@ export default function Header({
   return (
     <View
       style={{
-        zIndex: 10,
+        zIndex: 5,
         position: "absolute",
         top: Dimensions.get("window").height * 0.05,
         width: "100%",

@@ -23,18 +23,27 @@ export default function SuggestedPrayer({
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <View style={{ padding: 15 }}>
-        <View style={{ marginBottom: height * 0.05 }}>
+      <View>
+        <View style={{ marginBottom: height * 0.04 }}>
           <Text
             style={[
-              styles.text,
               {
                 fontSize: normalize(18, deviceType),
-                marginBottom: height * 0.02,
+                color: 'white', textAlign: 'center'
               },
             ]}
           >
-            Suggested Prayer for invoking the 49 Rays of God
+            Suggested Prayer
+          </Text>
+          <Text
+            style={[
+              styles.headerText,
+              {
+                fontSize: normalize(18, deviceType),
+              },
+            ]}
+          >
+            for invoking the 49 Rays of God
           </Text>
           <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
             "I ask that all energy work that is done in and through my body
@@ -45,10 +54,10 @@ export default function SuggestedPrayer({
           </Text>
         </View>
         <Divider />
-        <View style={{ marginTop: height * 0.02, alignItems: "center" }}>
+        <View style={{ marginTop: height * 0.04, alignItems: "center" }}>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -56,7 +65,7 @@ export default function SuggestedPrayer({
           </Text>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -64,7 +73,7 @@ export default function SuggestedPrayer({
           </Text>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -72,7 +81,7 @@ export default function SuggestedPrayer({
           </Text>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -80,7 +89,7 @@ export default function SuggestedPrayer({
           </Text>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -93,8 +102,14 @@ export default function SuggestedPrayer({
 }
 
 const styles = StyleSheet.create({
-  text: {
+  headerText: {
     color: "white",
     textAlign: "center",
+    marginBottom: 30,
+  },
+  text: {
+    color: "white",
+    textAlign: "left",
+    fontWeight: '300',
   },
 });

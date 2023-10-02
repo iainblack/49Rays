@@ -2,7 +2,7 @@ import { Platform, Dimensions, PixelRatio, StyleSheet } from "react-native";
 import { DeviceType } from "expo-device";
 
 export const AuthorInfoString =
-  "bj King is a practical mystic, artist, writer, minister, teacher of creativity, spiritual life coach, and president of Namaste Inc., a non-profit spiritual educational organization based out of Oklahoma City. She works inter-dimensionally as a liaison between the Intergalactic Federation, the Spiritual Hierarchy, the Angelic realm, and Humanity. She is editor and publisher of the Namaste Newsletter and the Namaste Mystery School of Remembering and the author of several books.";
+  "bj King is a practical mystic, artist, writer, minister, teacher of creativity, spiritual life coach, and president of Namaste Inc. - a non-profit spiritual educational organization based out of Oklahoma City. She works inter-dimensionally as a liaison between the Intergalactic Federation, the Spiritual Hierarchy, the Angelic realm, and Humanity. She is editor and publisher of the Namaste Newsletter and the Namaste Mystery School of Remembering and the author of several books.";
 
 //export const fontFamily = Platform.OS === "ios" ? "Cochin" : "Roboto";
 
@@ -64,6 +64,7 @@ export const globalStyles = StyleSheet.create({
       height: 0,
     },
     shadowRadius: 5,
+    elevation: 3,
   },
   cardShadow: {
     shadowOffset: {
@@ -73,6 +74,7 @@ export const globalStyles = StyleSheet.create({
     shadowOpacity: 0.9,
     shadowRadius: 20,
     shadowColor: "#000",
+    elevation: 3,
   },
 });
 
@@ -272,7 +274,7 @@ export const rayData = [
   },
   {
     title: "Ray 46",
-    description: "turquoise ray of gentleness.",
+    description: "Turquoise ray of gentleness.",
   },
   {
     title: "Ray 47",
@@ -280,11 +282,11 @@ export const rayData = [
   },
   {
     title: "Ray 48",
-    description: "Rainbow ray visionary consciousness in individuals.",
+    description: "Rainbow ray of visionary consciousness in individuals.",
   },
   {
     title: "Ray 49",
     description:
-      "Rainbow ray of visionary consciousness in the collective of humanity.",
+      "Rainbow ray of visionary consciousness in the collective of Humanity.",
   },
 ];

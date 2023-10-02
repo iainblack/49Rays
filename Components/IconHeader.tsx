@@ -20,14 +20,14 @@ export default function IconHeader({
     <View
       style={[
         {
-          zIndex: 10,
+          zIndex: 5,
           top: Dimensions.get("window").height * 0.01,
           width: "100%",
           alignItems: "center",
           justifyContent: alignLeft ? "flex-start" : "flex-end",
           display: "flex",
           flexDirection: "row",
-          marginBottom: 15,
+          marginBottom: 25,
         },
       ]}
     >

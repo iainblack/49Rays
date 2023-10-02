@@ -57,7 +57,7 @@ export default function CardStack({ deviceType, frontCardId, showBack }: CardSta
       }}
       modeConfig={{
         snapDirection: "left",
-        stackInterval: 14,
+        stackInterval: deviceType === "phone" ? 14 : 20,
       }}
       customConfig={() => ({ type: "positive", viewCount })}
       renderItem={({ item, index }) => (

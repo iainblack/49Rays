@@ -35,7 +35,7 @@ export default function AboutOverlay({
           zIndex: 1000,
           position: "absolute",
           bottom: 0,
-          height: height * 0.75,
+          height: height * 0.9,
           backgroundColor: COLOR_VIOLET,
           alignItems: "center",
           borderRadius: 20,
@@ -78,7 +78,7 @@ export default function AboutOverlay({
               style={[styles.text, { fontSize: normalize(14, deviceType) }]}
             >
               More information is included in the book “The 49 Rays of God: Their
-              Meanings and Uses” by bj King
+              Meanings and Uses” by bj King.
             </Text>
             <View
               style={{

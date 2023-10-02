@@ -132,6 +132,35 @@ export default function MenuHome({
           />
         </View>
       </Pressable>
+      <Divider />
+      <Pressable
+        onPress={() => {
+          setMenuIndex(4);
+        }}
+      >
+        <View style={[styles.listItem]}>
+          <View style={[styles.iconContainer]}>
+            <MaterialIcons
+              name="info-outline"
+              size={deviceType === "phone" ? 24 : 30}
+              color="white"
+            />
+            <Text
+              style={[
+                styles.text,
+                { fontSize: normalize(16, deviceType), marginLeft: 10 },
+              ]}
+            >
+              More App Info
+            </Text>
+          </View>
+          <MaterialIcons
+            name="chevron-right"
+            size={deviceType === "phone" ? 18 : 28}
+            color="white"
+          />
+        </View>
+      </Pressable>
     </Animated.View>
   );
 }

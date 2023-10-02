@@ -41,10 +41,10 @@ export default function CardIndex({
         alignLeft
       />
       <SafeAreaView>
-        <View style={{ padding: 15 }}>
+        <View>
           <Text
             style={[
-              styles.text,
+              styles.headerText,
               { fontSize: normalize(18, deviceType), marginBottom: 10 },
             ]}
           >
@@ -78,8 +78,8 @@ function Row({ title, description, deviceType }: RayIndexes) {
     >
       <Text
         style={[
-          styles.text,
           {
+            color: 'white',
             fontSize: normalize(14, deviceType),
             textDecorationLine: "underline",
           },
@@ -107,8 +107,15 @@ function Row({ title, description, deviceType }: RayIndexes) {
 }
 
 const styles = StyleSheet.create({
+  headerText: {
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
   text: {
     color: "white",
+    fontWeight: '300',
+    textAlign: 'left'
   },
   imageContainer: {
     height: "50%",
@@ -121,3 +128,4 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
 });
+
