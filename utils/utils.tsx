@@ -2,7 +2,7 @@ import { Platform, Dimensions, PixelRatio, StyleSheet } from "react-native";
 import { DeviceType } from "expo-device";
 
 export const AuthorInfoString =
-  "bj King is a practical mystic, artist, writer, minister, teacher of creativity, spiritual life coach, and president of Namaste Inc. - a non-profit spiritual educational organization based out of Oklahoma City. She works inter-dimensionally as a liaison between the Intergalactic Federation, the Spiritual Hierarchy, the Angelic realm, and Humanity. She is editor and publisher of the Namaste Newsletter and the Namaste Mystery School of Remembering and the author of several books.";
+  "bj King is a practical mystic, artist, writer, minister, teacher of creativity, spiritual life coach, and president of Namaste Enrichment Center Inc. - a spiritual educational organization based out of Oklahoma City. She works inter-dimensionally as a liaison between the Intergalactic Federation, the Spiritual Hierarchy, the Angelic realm, and Humanity. She is editor and publisher of the Namaste Newsletter and the Namaste Mystery School of Remembering and the author of several books.";
 
 //export const fontFamily = Platform.OS === "ios" ? "Cochin" : "Roboto";
 

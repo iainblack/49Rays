@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
 import { AuthorInfoString, IconNames, normalize } from "../../utils/utils";
 import IconHeader from "../IconHeader";
 import Divider from "../Divider";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface SuggestedPrayerProps {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -16,14 +17,14 @@ export default function SuggestedPrayer({
 }: SuggestedPrayerProps) {
   const { width, height } = useWindowDimensions();
   return (
-    <Animated.View entering={SlideInRight} exiting={SlideOutRight}>
+    <Animated.View entering={SlideInRight} exiting={SlideOutRight} style={{ height: '100%' }}>
       <IconHeader
         onClose={() => setMenuIndex(0)}
         deviceType={deviceType}
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <View>
+      <ScrollView bounces={false} style={{ height: '100%' }}>
         <View style={{ marginBottom: height * 0.04 }}>
           <Text
             style={[
@@ -96,7 +97,7 @@ export default function SuggestedPrayer({
             of all life on Earth.
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </Animated.View>
   );
 }

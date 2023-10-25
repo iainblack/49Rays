@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { AuthorInfoString, IconNames, normalize } from "../../utils/utils";
 import IconHeader from "../IconHeader";
 import Divider from "../Divider";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface AuthorInfoProps {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -15,14 +16,14 @@ export default function AuthorInfo({
   deviceType,
 }: AuthorInfoProps) {
   return (
-    <Animated.View entering={SlideInRight} exiting={SlideOutRight}>
+    <Animated.View entering={SlideInRight} exiting={SlideOutRight} style={{ height: '100%' }}>
       <IconHeader
         onClose={() => setMenuIndex(0)}
         deviceType={deviceType}
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <View>
+      <ScrollView bounces={false} style={{ height: '100%' }}>
         <View style={{ marginBottom: 30 }}>
           <Text
             style={[
@@ -52,7 +53,7 @@ export default function AuthorInfo({
             Photography and card design by Shelagh Schopen.
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </Animated.View>
   );
 }
