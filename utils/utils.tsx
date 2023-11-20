@@ -79,6 +79,10 @@ export const globalStyles = StyleSheet.create({
 });
 
 export const COLOR_VIOLET = "rgb(151,120,209)";
+export const COLOR_VIOLET_DARK = "rgb(101,70,159)";
+export const COLOR_VIOLET_LIGHT = "rgb(201,170,239)";
+export const COLOR_VIOLET_CONTRAST_TEXT = "#FFFFF";
+export const COLOR_VIOLET_LIGHT_CONTRAST_TEXT = "#373737";
 
 export enum IconNames {
   close = "close",

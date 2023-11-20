@@ -16,6 +16,8 @@ import AppInfo from "./AppInfo";
 interface MenuProps {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setHomeState: React.Dispatch<React.SetStateAction<number>>;
+  navigateToCard: (cardId: number) => void;
+  showMenu: boolean;
   deviceType: string;
   homeState: number;
 }
@@ -24,7 +26,9 @@ export default function Menu({
   deviceType,
   setShowMenu,
   setHomeState,
+  navigateToCard,
   homeState,
+  showMenu,
 }: MenuProps) {
   const isFirstRender = React.useRef<boolean>(true);
   const [transitionOutHome, setTransitionOutHome] =
@@ -54,6 +58,7 @@ export default function Menu({
           zIndex: 1000,
           backgroundColor: COLOR_VIOLET,
           borderRadius: 20,
+          display: showMenu ? "flex" : "none",
         },
       ]}
     >
@@ -78,7 +83,7 @@ export default function Menu({
             <AuthorInfo setMenuIndex={setMenuIndex} deviceType={deviceType} />
           )}
           {menuIndex === 2 && (
-            <CardIndex setMenuIndex={setMenuIndex} deviceType={deviceType} />
+            <CardIndex setMenuIndex={setMenuIndex} deviceType={deviceType} navigateToCard={navigateToCard} />
           )}
           {menuIndex === 3 && (
             <SuggestedPrayer

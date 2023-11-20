@@ -1,9 +1,9 @@
 import React from "react";
 import Animated, { SlideInRight, SlideOutRight } from "react-native-reanimated";
-import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
-import { IconNames, normalize } from "../../utils/utils";
+import { View, Text, StyleSheet, useWindowDimensions, Pressable } from "react-native";
+import { COLOR_VIOLET_DARK, COLOR_VIOLET_LIGHT, COLOR_VIOLET_LIGHT_CONTRAST_TEXT, IconNames, normalize } from "../../utils/utils";
 import IconHeader from "../IconHeader";
-import { Link } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 
 interface AppInfoProps {
     setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -14,9 +14,12 @@ export default function AppInfo({
     setMenuIndex,
     deviceType,
 }: AppInfoProps) {
-    const { height } = useWindowDimensions();
+    const router = useRouter();
     return (
-        <Animated.View entering={SlideInRight} exiting={SlideOutRight}>
+        <Animated.View
+            entering={SlideInRight}
+        // exiting={SlideOutRight}
+        >
             <IconHeader
                 onClose={() => setMenuIndex(0)}
                 deviceType={deviceType}
@@ -24,37 +27,21 @@ export default function AppInfo({
                 alignLeft
             />
             <View>
-                <View style={{ marginBottom: 30 }}>
-                    <Text
-                        style={[
-                            styles.headerText,
-                            { fontSize: normalize(18, deviceType) },
-                        ]}
-                    >
-                        More App Info
-                    </Text>
-                    <Text style={[styles.text, { fontSize: normalize(14, deviceType), marginBottom: height * 0.05 }]}>
+                <View style={{ borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
+                    <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
                         We hope you enjoyed this Namaste Inc. product. For more information, please visit our website.
                     </Text>
-                    <Text style={[styles.headerText, { fontSize: normalize(18, deviceType), textAlign: 'left' }]}>Links</Text>
-                    <Link
-                        style={[
-                            styles.text,
-                            {
-                                fontSize: normalize(14, deviceType),
-                                textDecorationLine: "underline",
-                                marginBottom: 10,
-                            },
-                        ]}
-                        href="https://namasteconsciousness.com/"
-                    >
-                        namasteconsciousness.com
-                    </Link>
-                    <View style={{
-                        flexDirection: 'row',
-                    }}>
-                        <Link href={'https://iainblack.dev/'} style={[styles.text, { textDecorationLine: 'underline', fontSize: normalize(14, deviceType), marginBottom: height * 0.05 }]}>www.iainblack.dev </Link>
-                        <Text style={[styles.text, { fontSize: normalize(12, deviceType) }]}>(Developer Website) </Text>
+                    <View style={{ marginTop: 30 }}>
+                        <Pressable onPress={() => router.push('https://namasteconsciousness.com/')}>
+                            <View style={[styles.button]}>
+                                <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>Visit our website</Text>
+                            </View>
+                        </Pressable>
+                        <Pressable onPress={() => router.push('https://iainblack.dev')}>
+                            <View style={[styles.button]}>
+                                <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>App developer's website</Text>
+                            </View>
+                        </Pressable>
                     </View>
                 </View>
             </View>
@@ -64,13 +51,18 @@ export default function AppInfo({
 
 const styles = StyleSheet.create({
     headerText: {
-        color: 'white',
+        color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
         textAlign: 'center',
         marginBottom: 20,
     },
     text: {
-        color: "white",
-        fontWeight: '300',
+        color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
         textAlign: 'left'
+    },
+    button: {
+        backgroundColor: COLOR_VIOLET_DARK,
+        padding: 10,
+        borderRadius: 16,
+        marginTop: 15,
     },
 });

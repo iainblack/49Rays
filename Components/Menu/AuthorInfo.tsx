@@ -1,7 +1,7 @@
 import React from "react";
 import Animated, { SlideInRight, SlideOutRight } from "react-native-reanimated";
 import { View, Text, StyleSheet } from "react-native";
-import { AuthorInfoString, IconNames, normalize } from "../../utils/utils";
+import { AuthorInfoString, COLOR_VIOLET_LIGHT, COLOR_VIOLET_LIGHT_CONTRAST_TEXT, IconNames, normalize } from "../../utils/utils";
 import IconHeader from "../IconHeader";
 import Divider from "../Divider";
 import { ScrollView } from "react-native-gesture-handler";
@@ -16,7 +16,10 @@ export default function AuthorInfo({
   deviceType,
 }: AuthorInfoProps) {
   return (
-    <Animated.View entering={SlideInRight} exiting={SlideOutRight} style={{ height: '100%' }}>
+    <Animated.View
+      entering={SlideInRight}
+      //exiting={SlideOutRight}
+      style={{ height: '100%' }}>
       <IconHeader
         onClose={() => setMenuIndex(0)}
         deviceType={deviceType}
@@ -24,7 +27,7 @@ export default function AuthorInfo({
         alignLeft
       />
       <ScrollView bounces={false} style={{ height: '100%' }}>
-        <View style={{ marginBottom: 30 }}>
+        <View style={{ marginBottom: 20, borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
           <Text
             style={[
               styles.headerText,
@@ -37,8 +40,7 @@ export default function AuthorInfo({
             {AuthorInfoString}
           </Text>
         </View>
-        <Divider />
-        <View style={{ marginTop: 30 }}>
+        <View style={{ marginTop: 0, borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
           <Text
             style={[
               styles.headerText,
@@ -54,19 +56,18 @@ export default function AuthorInfo({
           </Text>
         </View>
       </ScrollView>
-    </Animated.View>
+    </Animated.View >
   );
 }
 
 const styles = StyleSheet.create({
   headerText: {
-    color: 'white',
+    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
     textAlign: 'center',
     marginBottom: 20,
   },
   text: {
-    color: "white",
-    fontWeight: '300',
+    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
     textAlign: 'left'
   },
 });

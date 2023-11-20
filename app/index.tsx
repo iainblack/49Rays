@@ -23,6 +23,8 @@ export default function Home() {
   const [showAboutOverlay, setShowAboutOverlay] =
     React.useState<boolean>(false);
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
+  // const [showMenuNoAnimation, setShowMenuNoAnimation] =
+  //   React.useState<boolean>(false);
   const [deviceType, setDeviceType] = React.useState<string>("phone");
   const [homeState, setHomeState] = React.useState<HomeTypes>(HomeTypes.CARDS);
 
@@ -52,6 +54,13 @@ export default function Home() {
     setAppIsReady(true);
     SplashScreen.hideAsync();
   }, 2000);
+
+  const navigateToCard = (cardId: number) => {
+    frontCardId.current = cardId;
+    showBackOnFullScreen.current = true;
+    setShowMenu(false);
+    //setShowMenuNoAnimation(false);
+  };
 
   return (
     <View
@@ -108,14 +117,17 @@ export default function Home() {
                   {
                     backgroundColor: "rgba(0,0,0,0.5)",
                     zIndex: 10,
+                    //display: showMenuNoAnimation ? "flex" : "none",
                   },
                 ]}
               />
               <Menu
+                showMenu={showMenu}
                 deviceType={deviceType}
                 setShowMenu={setShowMenu}
                 setHomeState={setHomeState}
                 homeState={homeState}
+                navigateToCard={navigateToCard}
               />
             </>
           )}

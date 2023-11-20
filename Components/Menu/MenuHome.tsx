@@ -26,7 +26,7 @@ export default function MenuHome({
 }: MenuHomeProps) {
   return (
     <Animated.View
-      exiting={SlideOutLeft}
+      //exiting={SlideOutLeft}
       entering={
         isFirstRender && isFirstRender.current ? undefined : SlideInLeft
       }
@@ -263,7 +263,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    fontWeight: "400",
     color: "white",
     marginVertical: 18,
   },
