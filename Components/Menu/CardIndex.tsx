@@ -45,7 +45,7 @@ export default function CardIndex({
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <ScrollView style={{ height: "100%" }} bounces={false} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ height: "100%", alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }} bounces={false} showsVerticalScrollIndicator={false} >
         {rayData.map((rayIndex, index) => (
           <Row
             key={index}
@@ -57,7 +57,7 @@ export default function CardIndex({
           />
         ))}
       </ScrollView>
-    </Animated.View>
+    </Animated.View >
   );
 }
 

@@ -13,7 +13,6 @@ import {
   COLOR_VIOLET,
   IconNames,
   COLOR_VIOLET_LIGHT,
-  COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
   COLOR_VIOLET_DARK,
 } from "../utils/utils";
 import { Link, useRouter } from "expo-router";
@@ -59,7 +58,7 @@ export default function AboutOverlay({
             deviceType={deviceType}
             iconName={IconNames.close}
           />
-          <View style={{ borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
+          <View style={{ padding: 25, alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
             <View style={{ marginBottom: 20 }}>
               <Text
                 style={[styles.text, { fontSize: normalize(18, deviceType) }]}
@@ -101,20 +100,18 @@ export default function AboutOverlay({
           </View>
         </View>
       </SafeAreaView>
-    </Animated.View>
+    </Animated.View >
   );
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: "left",
-    marginVertical: 10,
-  },
   headerText: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: "center",
+    color: "white",
     marginBottom: 20,
+  },
+  text: {
+    color: "white",
+    marginVertical: 18,
   },
   button: {
     backgroundColor: COLOR_VIOLET_DARK,

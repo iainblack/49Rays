@@ -25,7 +25,7 @@ export default function AuthorInfo({
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <ScrollView bounces={false} style={{ height: '100%' }}>
+      <ScrollView bounces={false} style={{ height: '100%', alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
         <View style={{ borderRadius: 10, padding: 20 }}>
           <Text
             style={[

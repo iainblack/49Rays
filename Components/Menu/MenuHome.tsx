@@ -38,128 +38,130 @@ export default function MenuHome({
         }}
         iconName={IconNames.close}
       />
-      <ViewSelection
-        deviceType={deviceType}
-        setHomeState={setHomeState}
-        homeState={homeState}
-        setShowMenu={setShowMenu}
-      />
-      <Pressable
-        onPress={() => {
-          setMenuIndex(1);
-        }}
-      >
-        <View style={[styles.listItem]}>
-          <View style={[styles.iconContainer]}>
+      <View style={{ alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
+        <ViewSelection
+          deviceType={deviceType}
+          setHomeState={setHomeState}
+          homeState={homeState}
+          setShowMenu={setShowMenu}
+        />
+        <Pressable
+          onPress={() => {
+            setMenuIndex(1);
+          }}
+        >
+          <View style={[styles.listItem]}>
+            <View style={[styles.iconContainer]}>
+              <MaterialIcons
+                name="people"
+                size={deviceType === "phone" ? 24 : 30}
+                color="white"
+              />
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: normalize(16, deviceType), marginLeft: 10 },
+                ]}
+              >
+                Author Info
+              </Text>
+            </View>
             <MaterialIcons
-              name="people"
-              size={deviceType === "phone" ? 24 : 30}
+              name="chevron-right"
+              size={deviceType === "phone" ? 18 : 28}
               color="white"
             />
-            <Text
-              style={[
-                styles.text,
-                { fontSize: normalize(16, deviceType), marginLeft: 10 },
-              ]}
-            >
-              Author Info
-            </Text>
           </View>
-          <MaterialIcons
-            name="chevron-right"
-            size={deviceType === "phone" ? 18 : 28}
-            color="white"
-          />
-        </View>
-      </Pressable>
-      <Divider />
-      <Pressable
-        onPress={() => {
-          setMenuIndex(2);
-        }}
-      >
-        <View style={[styles.listItem]}>
-          <View style={[styles.iconContainer]}>
-            <MaterialCommunityIcons
-              name="magnify"
-              size={deviceType === "phone" ? 24 : 30}
-              color="white"
-            />
-            <Text
-              style={[
-                styles.text,
-                { fontSize: normalize(16, deviceType), marginLeft: 10 },
-              ]}
-            >
-              Card Index
-            </Text>
-          </View>
-          <MaterialIcons
-            name="chevron-right"
-            s
-            size={deviceType === "phone" ? 18 : 28}
-            color="white"
-          />
-        </View>
-      </Pressable>
-      <Divider />
-      <Pressable
-        onPress={() => {
-          setMenuIndex(3);
-        }}
-      >
-        <View style={[styles.listItem]}>
-          <View style={[styles.iconContainer]}>
-            <MaterialCommunityIcons
-              name="script-text-outline"
-              size={deviceType === "phone" ? 24 : 30}
-              color="white"
-            />
-            <Text
-              style={[
-                styles.text,
-                { fontSize: normalize(16, deviceType), marginLeft: 10 },
-              ]}
-            >
-              Suggested Prayer
-            </Text>
-          </View>
-          <MaterialIcons
-            name="chevron-right"
-            size={deviceType === "phone" ? 18 : 28}
-            color="white"
-          />
-        </View>
-      </Pressable>
-      <Divider />
-      <Pressable
-        onPress={() => {
-          setMenuIndex(4);
-        }}
-      >
-        <View style={[styles.listItem]}>
-          <View style={[styles.iconContainer]}>
+        </Pressable>
+        <Divider />
+        <Pressable
+          onPress={() => {
+            setMenuIndex(2);
+          }}
+        >
+          <View style={[styles.listItem]}>
+            <View style={[styles.iconContainer]}>
+              <MaterialCommunityIcons
+                name="magnify"
+                size={deviceType === "phone" ? 24 : 30}
+                color="white"
+              />
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: normalize(16, deviceType), marginLeft: 10 },
+                ]}
+              >
+                Card Index
+              </Text>
+            </View>
             <MaterialIcons
-              name="info-outline"
-              size={deviceType === "phone" ? 24 : 30}
+              name="chevron-right"
+              s
+              size={deviceType === "phone" ? 18 : 28}
               color="white"
             />
-            <Text
-              style={[
-                styles.text,
-                { fontSize: normalize(16, deviceType), marginLeft: 10 },
-              ]}
-            >
-              More App Info
-            </Text>
           </View>
-          <MaterialIcons
-            name="chevron-right"
-            size={deviceType === "phone" ? 18 : 28}
-            color="white"
-          />
-        </View>
-      </Pressable>
+        </Pressable>
+        <Divider />
+        <Pressable
+          onPress={() => {
+            setMenuIndex(3);
+          }}
+        >
+          <View style={[styles.listItem]}>
+            <View style={[styles.iconContainer]}>
+              <MaterialCommunityIcons
+                name="script-text-outline"
+                size={deviceType === "phone" ? 24 : 30}
+                color="white"
+              />
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: normalize(16, deviceType), marginLeft: 10 },
+                ]}
+              >
+                Suggested Prayer
+              </Text>
+            </View>
+            <MaterialIcons
+              name="chevron-right"
+              size={deviceType === "phone" ? 18 : 28}
+              color="white"
+            />
+          </View>
+        </Pressable>
+        <Divider />
+        <Pressable
+          onPress={() => {
+            setMenuIndex(4);
+          }}
+        >
+          <View style={[styles.listItem]}>
+            <View style={[styles.iconContainer]}>
+              <MaterialIcons
+                name="info-outline"
+                size={deviceType === "phone" ? 24 : 30}
+                color="white"
+              />
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: normalize(16, deviceType), marginLeft: 10 },
+                ]}
+              >
+                More App Info
+              </Text>
+            </View>
+            <MaterialIcons
+              name="chevron-right"
+              size={deviceType === "phone" ? 18 : 28}
+              color="white"
+            />
+          </View>
+        </Pressable>
+      </View>
     </Animated.View>
   );
 }

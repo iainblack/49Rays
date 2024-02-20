@@ -16,7 +16,7 @@ export const deviceTypeMap = {
 
 export function normalize(size, deviceType) {
   const { height, width } = Dimensions.get("window");
-  const scale = deviceType === "phone" ? width / 320 : width / 420;
+  const scale = deviceType === "phone" ? width / 320 : width / 580;
   const newSize = size * scale;
   if (Platform.OS === "ios") {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
