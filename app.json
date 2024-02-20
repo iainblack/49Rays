@@ -2,7 +2,7 @@
   "expo": {
     "name": "The 49 Rays Of God",
     "slug": "49rays",
-    "version": "1.2.6",
+    "version": "1.2.11",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.the49Rays",
-      "versionCode": 3,
+      "versionCode": 8,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"

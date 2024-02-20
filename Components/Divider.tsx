@@ -9,7 +9,7 @@ interface DividerProps {
 }
 
 const Divider: React.FC<DividerProps> = ({
-  width = 0.75,
+  width = 1,
   orientation = "horizontal",
   color = "white",
   dividerStyle,

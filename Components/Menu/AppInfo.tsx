@@ -1,9 +1,10 @@
 import React from "react";
 import Animated, { SlideInRight, SlideOutRight } from "react-native-reanimated";
-import { View, Text, StyleSheet, useWindowDimensions, Pressable } from "react-native";
+import { View, Text, StyleSheet, useWindowDimensions, Pressable, ScrollView } from "react-native";
 import { COLOR_VIOLET_DARK, COLOR_VIOLET_LIGHT, COLOR_VIOLET_LIGHT_CONTRAST_TEXT, IconNames, normalize } from "../../utils/utils";
 import IconHeader from "../IconHeader";
 import { Link, router, useRouter } from "expo-router";
+import Divider from "../Divider";
 
 interface AppInfoProps {
     setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -26,17 +27,19 @@ export default function AppInfo({
                 iconName={IconNames.chevronLeft}
                 alignLeft
             />
-            <View style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <View style={{
-                    padding: 20
-                }}>
-                    <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
-                        We hope you enjoyed this Namaste Inc. product. For more information, please visit our website.
+            <ScrollView bounces={false} style={{ height: '100%' }}>
+                <View style={{ borderRadius: 10, padding: 20 }}>
+                    <Text style={[styles.headerText, { fontSize: normalize(14, deviceType) }]}>
+                        We hope you enjoyed this Namaste Enrichment Center Inc. product. For more information, please visit our website.
                     </Text>
                 </View>
+                <Divider />
                 <View style={{
                     marginBottom: '25%', borderRadius: 14, width: '100%', padding: 20, justifyContent: 'center'
                 }}>
+                    <Text style={[styles.headerText, { fontSize: normalize(18, deviceType) }]}>
+                        Links
+                    </Text>
                     <Pressable onPress={() => router.push('https://namasteconsciousness.com/')}>
                         <View style={[styles.button]}>
                             <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>Our website</Text>
@@ -48,7 +51,7 @@ export default function AppInfo({
                         </View>
                     </Pressable>
                 </View>
-            </View>
+            </ScrollView>
         </Animated.View >
     );
 }
