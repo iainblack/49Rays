@@ -18,7 +18,6 @@ export default function AuthorInfo({
   return (
     <Animated.View
       entering={SlideInRight}
-      //exiting={SlideOutRight}
       style={{ height: '100%' }}>
       <IconHeader
         onClose={() => setMenuIndex(0)}
@@ -27,7 +26,7 @@ export default function AuthorInfo({
         alignLeft
       />
       <ScrollView bounces={false} style={{ height: '100%' }}>
-        <View style={{ marginBottom: 20, borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
+        <View style={{ borderRadius: 10, padding: 20 }}>
           <Text
             style={[
               styles.headerText,
@@ -40,7 +39,8 @@ export default function AuthorInfo({
             {AuthorInfoString}
           </Text>
         </View>
-        <View style={{ marginTop: 0, borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
+        <Divider />
+        <View style={{ marginTop: 0, borderRadius: 10, padding: 20 }}>
           <Text
             style={[
               styles.headerText,
@@ -62,12 +62,11 @@ export default function AuthorInfo({
 
 const styles = StyleSheet.create({
   headerText: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: 'center',
+    color: "white",
     marginBottom: 20,
   },
   text: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: 'left'
+    color: "white",
+    marginVertical: 18,
   },
 });

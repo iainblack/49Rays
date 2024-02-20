@@ -26,7 +26,6 @@ export default function MenuHome({
 }: MenuHomeProps) {
   return (
     <Animated.View
-      //exiting={SlideOutLeft}
       entering={
         isFirstRender && isFirstRender.current ? undefined : SlideInLeft
       }
@@ -179,7 +178,7 @@ function ViewSelection({
   setShowMenu,
 }: ViewSelectionProps) {
   return (
-    <View>
+    <View >
       <View
         style={[
           {

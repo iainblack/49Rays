@@ -37,7 +37,6 @@ export default function CardIndex({
   return (
     <Animated.View
       entering={SlideInRight}
-      //exiting={SlideOutRight}
       style={{ height: "100%" }}
     >
       <IconHeader
@@ -46,7 +45,7 @@ export default function CardIndex({
         iconName={IconNames.chevronLeft}
         alignLeft
       />
-      <ScrollView style={{ height: "100%" }} bounces={false}>
+      <ScrollView style={{ height: "100%" }} bounces={false} showsVerticalScrollIndicator={false}>
         {rayData.map((rayIndex, index) => (
           <Row
             key={index}
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR_VIOLET_DARK,
     padding: 10,
     borderRadius: 16,
-    marginTop: 10,
+    marginTop: 20,
   },
   itemContent: {
     marginTop: 10,

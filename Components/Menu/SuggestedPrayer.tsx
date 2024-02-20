@@ -25,18 +25,8 @@ export default function SuggestedPrayer({
         alignLeft
       />
       <ScrollView bounces={false} style={{ height: '100%' }}>
-        <View style={{ borderRadius: 14, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
-          <View style={{ marginBottom: 35 }}>
-            <Text
-              style={[
-                {
-                  fontSize: normalize(18, deviceType),
-                  color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT, textAlign: 'center'
-                },
-              ]}
-            >
-              Suggested Prayer
-            </Text>
+        <View style={{ borderRadius: 14 }}>
+          <View style={{ padding: 20 }}>
             <Text
               style={[
                 styles.headerText,
@@ -45,7 +35,7 @@ export default function SuggestedPrayer({
                 },
               ]}
             >
-              for invoking the 49 Rays of God
+              Suggested Prayer for invoking the 49 Rays of God
             </Text>
             <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
               "I ask that all energy work that is done in and through my body
@@ -55,7 +45,8 @@ export default function SuggestedPrayer({
               ~~Ray to calm and transmute this situation. So be it."
             </Text>
           </View>
-          <View >
+          <Divider />
+          <View style={{ padding: 20 }}>
             <Text
               style={[
                 styles.headerText,
@@ -105,12 +96,11 @@ export default function SuggestedPrayer({
 
 const styles = StyleSheet.create({
   headerText: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: "center",
-    marginBottom: 15,
+    color: "white",
+    marginBottom: 20,
   },
   text: {
-    color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-    textAlign: "left",
+    color: "white",
+    marginVertical: 18,
   },
 });

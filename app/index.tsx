@@ -23,8 +23,6 @@ export default function Home() {
   const [showAboutOverlay, setShowAboutOverlay] =
     React.useState<boolean>(false);
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
-  // const [showMenuNoAnimation, setShowMenuNoAnimation] =
-  //   React.useState<boolean>(false);
   const [deviceType, setDeviceType] = React.useState<string>("phone");
   const [homeState, setHomeState] = React.useState<HomeTypes>(HomeTypes.CARDS);
 
@@ -35,7 +33,6 @@ export default function Home() {
   useEffect(() => {
     async function prepare() {
       try {
-        //Load device type
         const deviceType = await getDeviceTypeAsync();
         const thisDeviceType = deviceTypeMap[deviceType];
         setDeviceType(thisDeviceType);
@@ -56,10 +53,10 @@ export default function Home() {
   }, 2000);
 
   const navigateToCard = (cardId: number) => {
+    setHomeState(HomeTypes.CARDS);
     frontCardId.current = cardId;
     showBackOnFullScreen.current = true;
     setShowMenu(false);
-    //setShowMenuNoAnimation(false);
   };
 
   return (
@@ -117,7 +114,6 @@ export default function Home() {
                   {
                     backgroundColor: "rgba(0,0,0,0.5)",
                     zIndex: 10,
-                    //display: showMenuNoAnimation ? "flex" : "none",
                   },
                 ]}
               />

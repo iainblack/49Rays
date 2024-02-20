@@ -18,7 +18,7 @@ export default function AppInfo({
     return (
         <Animated.View
             entering={SlideInRight}
-        // exiting={SlideOutRight}
+            style={{ height: '100%' }}
         >
             <IconHeader
                 onClose={() => setMenuIndex(0)}
@@ -26,23 +26,27 @@ export default function AppInfo({
                 iconName={IconNames.chevronLeft}
                 alignLeft
             />
-            <View>
-                <View style={{ borderRadius: 10, backgroundColor: COLOR_VIOLET_LIGHT, padding: 25 }}>
+            <View style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                <View style={{
+                    padding: 20
+                }}>
                     <Text style={[styles.text, { fontSize: normalize(14, deviceType) }]}>
                         We hope you enjoyed this Namaste Inc. product. For more information, please visit our website.
                     </Text>
-                    <View style={{ marginTop: 30 }}>
-                        <Pressable onPress={() => router.push('https://namasteconsciousness.com/')}>
-                            <View style={[styles.button]}>
-                                <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>Visit our website</Text>
-                            </View>
-                        </Pressable>
-                        <Pressable onPress={() => router.push('https://iainblack.dev')}>
-                            <View style={[styles.button]}>
-                                <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>App developer's website</Text>
-                            </View>
-                        </Pressable>
-                    </View>
+                </View>
+                <View style={{
+                    marginBottom: '25%', borderRadius: 14, width: '100%', padding: 20, justifyContent: 'center'
+                }}>
+                    <Pressable onPress={() => router.push('https://namasteconsciousness.com/')}>
+                        <View style={[styles.button]}>
+                            <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>Our website</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={() => router.push('https://iainblack.dev')}>
+                        <View style={[styles.button]}>
+                            <Text style={[{ fontSize: normalize(14, deviceType), color: 'white', alignSelf: 'center' }]}>App developer's website</Text>
+                        </View>
+                    </Pressable>
                 </View>
             </View>
         </Animated.View >
@@ -51,13 +55,12 @@ export default function AppInfo({
 
 const styles = StyleSheet.create({
     headerText: {
-        color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-        textAlign: 'center',
+        color: "white",
         marginBottom: 20,
     },
     text: {
-        color: COLOR_VIOLET_LIGHT_CONTRAST_TEXT,
-        textAlign: 'left'
+        color: "white",
+        marginVertical: 18,
     },
     button: {
         backgroundColor: COLOR_VIOLET_DARK,

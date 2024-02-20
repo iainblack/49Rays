@@ -31,8 +31,6 @@ export default function Menu({
   showMenu,
 }: MenuProps) {
   const isFirstRender = React.useRef<boolean>(true);
-  const [transitionOutHome, setTransitionOutHome] =
-    React.useState<boolean>(true);
   const { width, height } = useWindowDimensions();
   const [menuIndex, setMenuIndex] = React.useState<number>(0);
 
