@@ -1,11 +1,10 @@
 import React from "react";
 import { IconNames, normalize } from "../../utils/utils";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, ScrollView } from "react-native";
 import Divider from "../Divider";
-import Animated, { SlideInLeft, SlideOutLeft } from "react-native-reanimated";
+import Animated, { SlideInLeft } from "react-native-reanimated";
 import IconHeader from "../IconHeader";
-import { HomeTypes } from "../../app";
 
 interface MenuHomeProps {
   setMenuIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -38,7 +37,7 @@ export default function MenuHome({
         }}
         iconName={IconNames.close}
       />
-      <View style={{ alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
+      <ScrollView bounces={false} style={{ alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
         <ViewSelection
           deviceType={deviceType}
           setHomeState={setHomeState}
@@ -97,7 +96,6 @@ export default function MenuHome({
             </View>
             <MaterialIcons
               name="chevron-right"
-              s
               size={deviceType === "phone" ? 18 : 28}
               color="white"
             />
@@ -161,7 +159,7 @@ export default function MenuHome({
             />
           </View>
         </Pressable>
-      </View>
+      </ScrollView>
     </Animated.View>
   );
 }
@@ -279,6 +277,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 10,
-    paddingVertical: 5,
   },
 });

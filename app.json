@@ -2,7 +2,7 @@
   "expo": {
     "name": "The 49 Rays Of God",
     "slug": "49rays",
-    "version": "1.2.11",
+    "version": "1.2.14",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

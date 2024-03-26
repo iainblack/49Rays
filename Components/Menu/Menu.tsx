@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
 } from "react-native";
-import { globalStyles, COLOR_VIOLET, IconNames } from "../../utils/utils";
+import { globalStyles, COLOR_VIOLET } from "../../utils/utils";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import MenuHome from "./MenuHome";
 import AuthorInfo from "./AuthorInfo";

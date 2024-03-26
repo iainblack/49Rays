@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
   Pressable,
+  ScrollView,
 } from "react-native";
 import {
   globalStyles,
@@ -58,7 +59,7 @@ export default function AboutOverlay({
             deviceType={deviceType}
             iconName={IconNames.close}
           />
-          <View style={{ padding: 25, alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
+          <ScrollView bounces={false} style={{ paddingHorizontal: 25, alignSelf: 'center', width: deviceType === "tablet" ? "85%" : "100%" }}>
             <View style={{ marginBottom: 20 }}>
               <Text
                 style={[styles.text, { fontSize: normalize(18, deviceType) }]}
@@ -97,7 +98,7 @@ export default function AboutOverlay({
                 </View>
               </Pressable>
             </View>
-          </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </Animated.View >
