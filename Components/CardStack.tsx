@@ -18,7 +18,7 @@ interface CardStackProps {
 }
 
 export default function CardStack({ deviceType, frontCardId, showBack }: CardStackProps) {
-  const viewCount = 10;
+  const viewCount = 20;
   const { width, height } = useWindowDimensions();
 
 
